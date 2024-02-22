@@ -14,7 +14,15 @@ class AboutSmilesTutorialViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+    init() {
+        
+        super.init(nibName: "AboutSmilesTutorialViewController", bundle: Bundle.module)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     /*
     // MARK: - Navigation
