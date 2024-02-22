@@ -7,7 +7,7 @@
 
 import UIKit
 extension AboutSmilesLayout {
-    enum Section: Int {
+    enum Section: Int, CaseIterable {
         case offers = 0
         case faqs = 1
     }
@@ -18,7 +18,6 @@ final class AboutSmilesLayout {
     func create() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
             let type = Section(rawValue: sectionIndex) ?? .faqs
-            
             switch type {
             case .offers:
                 return self?.offersLayout(layoutEnvironment)
@@ -41,10 +40,10 @@ final class AboutSmilesLayout {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemSize.heightDimension)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        //      let group = NSCollectionLayoutGroup(layoutSize: groupSize)
+
         let section = NSCollectionLayoutSection(group: group)
-        //    section.contentInsets = .init(top: 16, leading: 16, bottom: 16, trailing: 16)
-        section.interGroupSpacing = 16
+            section.contentInsets = .init(top: 30, leading: 0, bottom: 0, trailing: 0)
+        section.interGroupSpacing = 24
         section.boundarySupplementaryItems = [createHeaderItem()]
         
         return section
@@ -54,7 +53,7 @@ final class AboutSmilesLayout {
         // First item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 0, trailing: 5)
         
         // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(layoutEnvironment.container.contentSize.width / 3), heightDimension: .absolute(210))
@@ -62,16 +61,15 @@ final class AboutSmilesLayout {
         
         // Section
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.orthogonalScrollingBehavior = .groupPaging
+        section.contentInsets = .init(top: 16, leading: 0, bottom: 20, trailing: 0)
         section.boundarySupplementaryItems = [createHeaderItem()]
         return section
     }
     
     private func createHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(40))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: "header", alignment: .top)
-        header.pinToVisibleBounds = true
+        let headerItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(28))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerItemSize, elementKind: Constants.aboutSmilesHeader.rawValue, alignment: .top)
         return header
     }
-    
 }

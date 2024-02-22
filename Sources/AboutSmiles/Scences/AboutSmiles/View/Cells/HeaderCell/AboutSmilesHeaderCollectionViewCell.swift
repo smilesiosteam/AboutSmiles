@@ -8,14 +8,14 @@
 import UIKit
 import SmilesFontsManager
 
-final class AboutSmilesCollectionViewCell: UICollectionReusableView {
+final class AboutSmilesHeaderCollectionViewCell: UICollectionReusableView {
 
     // MARK: - Outlets
     @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Functions
     func configCell(with title: String) {
-        titleLabel.text = title
-//        titleLabel
+//        titleLabel.text = title
+        titleLabel.fontTextStyle = .smilesHeadline2
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SmilesFontsManager
 
 final class OfferCollectionViewCell: UICollectionViewCell {
 
@@ -21,7 +22,8 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Functions
     func configCell(viewModel: ViewModel) {
-        titleLabel.text = viewModel.title
+        titleLabel.text = "Get the best \n of Smiles "
+        titleLabel.fontTextStyle = .smilesTitle2
     }
 }
 

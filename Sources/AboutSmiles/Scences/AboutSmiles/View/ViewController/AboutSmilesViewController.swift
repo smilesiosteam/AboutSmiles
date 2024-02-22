@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import SmilesUtilities
+
 
 public final class AboutSmilesViewController: UIViewController {
     
@@ -15,10 +17,19 @@ public final class AboutSmilesViewController: UIViewController {
     // MARK: - Properties
     private var items = QuestionCollectionViewCell.ViewModel.load()
     private let layout = AboutSmilesLayout()
+    
     // MARK: - Life Cycle
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+    }
+    
+    public init() {
+        super.init(nibName: AboutSmilesViewController.className, bundle: Bundle.module)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Functions
@@ -26,21 +37,23 @@ public final class AboutSmilesViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.collectionViewLayout = layout.create()
         
-        collectionView.register(UINib(nibName: "OfferCollectionViewCell", bundle: .module), forCellWithReuseIdentifier: "OfferCollectionViewCell")
-        collectionView.register(UINib(nibName: "QuestionCollectionViewCell", bundle: .module), forCellWithReuseIdentifier: "QuestionCollectionViewCell")
+        collectionView.register(UINib(nibName: OfferCollectionViewCell.className, bundle: .module),
+                                forCellWithReuseIdentifier: OfferCollectionViewCell.className)
+        collectionView.register(UINib(nibName: QuestionCollectionViewCell.className, bundle: .module),
+                                forCellWithReuseIdentifier: QuestionCollectionViewCell.className)
         
         collectionView.register(
-            UINib(nibName: "AboutSmilesCollectionViewCell", bundle: .module),
-            forSupplementaryViewOfKind: "header",
-            withReuseIdentifier: "SectionHeader")
-//        collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: "header", withReuseIdentifier: "SectionHeader")
+            UINib(nibName: AboutSmilesHeaderCollectionViewCell.className, bundle: .module),
+            forSupplementaryViewOfKind: Constants.aboutSmilesHeader.rawValue,
+            withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className)
     }
 }
 
 extension AboutSmilesViewController: UICollectionViewDataSource {
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
-        2
+        AboutSmilesLayout.Section.allCases.count
     }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
             return 3
@@ -49,13 +62,14 @@ extension AboutSmilesViewController: UICollectionViewDataSource {
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OfferCollectionViewCell", for: indexPath) as! OfferCollectionViewCell
-            //            cell.contentView.backgroundColor = .red
+        let type = AboutSmilesLayout.Section(rawValue: indexPath.section) ?? .faqs
+        switch type {
+        case .offers:
+            let cell = collectionView.dequeueReusableCell(withClass: OfferCollectionViewCell.self, for: indexPath)
+            cell.configCell(viewModel: .init())
             return cell
-        }
-        else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QuestionCollectionViewCell", for: indexPath) as! QuestionCollectionViewCell
+        case .faqs:
+            let cell = collectionView.dequeueReusableCell(withClass: QuestionCollectionViewCell.self, for: indexPath)
             cell.configCell(viewModel: items[indexPath.row])
             cell.didSelect = { [weak self] in
                 self?.items[indexPath.row].isOpen = !((self?.items[indexPath.row].isOpen) ?? false)
@@ -65,30 +79,11 @@ extension AboutSmilesViewController: UICollectionViewDataSource {
         }
     }
     
-    
     public func collectionView(_ collectionView: UICollectionView,
-                        viewForSupplementaryElementOfKind kind: String,
-                        at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: "header", withReuseIdentifier: "SectionHeader", for: indexPath) as! AboutSmilesCollectionViewCell
-//        header.item = "Section Header"
+                               viewForSupplementaryElementOfKind kind: String,
+                               at indexPath: IndexPath) -> UICollectionReusableView {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue, withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className, for: indexPath) as! AboutSmilesHeaderCollectionViewCell
+        header.configCell(with: "Discover offers")
         return header
-    }
-}
-
-
-extension UICollectionView {
-    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(ofKind kind: String, withClass name: T.Type, for indexPath: IndexPath) -> T {
-        guard let cell = dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: name), for: indexPath) as? T else {
-            fatalError("Couldn't find UICollectionReusableView for \(String(describing: name))")
-        }
-        return cell
-    }
-}
-
-// MARK: - Create
-extension AboutSmilesViewController {
-    static public func create() -> AboutSmilesViewController {
-        let viewController = AboutSmilesViewController(nibName: String(describing: AboutSmilesViewController.self), bundle: .module)
-        return viewController
     }
 }

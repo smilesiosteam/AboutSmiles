@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-mb-hpM">
-                    <rect key="frame" x="20" y="79" width="353" height="719"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="5aR-mb-hpM">
+                    <rect key="frame" x="16" y="75" width="361" height="727"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewLayout key="collectionViewLayout" id="mUR-pQ-5gu"/>
                 </collectionView>
@@ -29,10 +29,10 @@
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="5aR-mb-hpM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="1ad-jx-tV2"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5aR-mb-hpM" secondAttribute="bottom" constant="20" id="Kho-dZ-r0j"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5aR-mb-hpM" secondAttribute="trailing" constant="20" id="dTq-kC-ieR"/>
-                <constraint firstItem="5aR-mb-hpM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="zdG-Ug-zPP"/>
+                <constraint firstItem="5aR-mb-hpM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="1ad-jx-tV2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5aR-mb-hpM" secondAttribute="bottom" constant="16" id="Kho-dZ-r0j"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5aR-mb-hpM" secondAttribute="trailing" constant="16" id="dTq-kC-ieR"/>
+                <constraint firstItem="5aR-mb-hpM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="zdG-Ug-zPP"/>
             </constraints>
             <point key="canvasLocation" x="77" y="20"/>
         </view>
