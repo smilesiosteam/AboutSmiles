@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "Explore the best of UAE with Smiles Explorer.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Explore the best of UAE with Smiles Explorer@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Explore the best of UAE with Smiles Explorer@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
