@@ -77,7 +77,7 @@
                                                 <color key="value" red="0.82352941180000006" green="0.83137254900000002" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                <color key="value" red="0.30196078430000001" green="0.31764705879999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.42745098469999998" green="0.26274511220000002" blue="0.53725492949999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimation" value="YES"/>
                                             <userDefinedRuntimeAttribute type="size" keyPath="activeSize">
@@ -85,6 +85,12 @@
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="columnSpacing">
                                                 <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="inactiveSize">
+                                                <size key="value" width="8" height="8"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>

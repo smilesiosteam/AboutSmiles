@@ -20,18 +20,10 @@ class AboutScrollableCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var goToExplorerButton: UIButton!
     
-    public var showPageControl = false {
-        didSet {
-            if !showPageControl {
-                pageController.isHidden = true
-                pageControlHeight.constant = 0
-                layoutIfNeeded()
-            }
-        }
-    }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        pageController.isHidden = false
         pageController.currentIndex = 0
         pageController.activeColor = .appRevampPurpleMainColor
         self.roundTopCorners(of:roundedView , by: 20)
