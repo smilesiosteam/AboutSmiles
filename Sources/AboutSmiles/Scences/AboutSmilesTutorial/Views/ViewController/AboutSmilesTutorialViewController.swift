@@ -61,14 +61,18 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
 }
 
-extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 3
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
+         
+         let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
+         cell.pageController.currentPage = indexPath.row
+    
         return cell
     }
+
 }

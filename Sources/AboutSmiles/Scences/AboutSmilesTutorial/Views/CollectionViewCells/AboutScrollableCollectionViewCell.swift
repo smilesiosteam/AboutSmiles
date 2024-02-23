@@ -7,6 +7,7 @@
 
 import UIKit
 import SmilesPageController
+import SmilesUtilities
 
 final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     
@@ -14,7 +15,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var backgroundColorView: UIView!
     @IBOutlet private weak var foregroundImageView: UIView!
     @IBOutlet private weak var roundedView: UIView!
-    @IBOutlet private weak var pageController: JXPageControlJump!
+    @IBOutlet  weak var pageController: JXPageControlJump!
     @IBOutlet private weak var pageControlHeight: NSLayoutConstraint!
     @IBOutlet private weak var titleLable: UILabel!
     @IBOutlet private weak var descriptionLable: UILabel!
@@ -37,18 +38,16 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
         pageController.activeColor = .appRevampPurpleMainColor
         self.roundTopCorners(of:roundedView , by: 20)
         // Initialization code
+        if AppCommonMethods.languageIsArabic() {
+            pageController.transform = CGAffineTransform(rotationAngle: .pi)
+        }
+        pageController.contentAlignment = JXPageControlAlignment(.left,.center)
     }
     
    private func roundTopCorners(of view: UIView, by radius: CGFloat) {
-//            let path = UIBezierPath(roundedRect: view.bounds,
-//                                    byRoundingCorners: [.topLeft, .topRight],
-//                                    cornerRadii: CGSize(width: radius, height: radius))
-//
-//            let maskLayer = CAShapeLayer()
-//            maskLayer.path = path.cgPath
-//            view.layer.mask = maskLayer
-        
+       
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = radius
     }
+    
 }
