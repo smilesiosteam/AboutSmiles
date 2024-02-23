@@ -9,6 +9,13 @@ import UIKit
 import SmilesPageController
 import SmilesUtilities
 
+protocol AboutScrollableCollectionCellDelegate: AnyObject {
+    
+    func didTabCrossButton()
+    func didTabNextButton()
+    func didTabGoButton()
+}
+
 final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outltes
@@ -22,6 +29,8 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var nextButton: UIButton!
     @IBOutlet private weak var goToExplorerButton: UIButton!
     
+    weak var delegate: AboutScrollableCollectionCellDelegate?
+    
     public var showPageControl = false {
         didSet {
             if !showPageControl {
@@ -34,6 +43,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupAppearance()
         pageController.currentIndex = 0
         pageController.activeColor = .appRevampPurpleMainColor
         self.roundTopCorners(of:roundedView , by: 20)
@@ -43,11 +53,48 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
         }
         pageController.contentAlignment = JXPageControlAlignment(.left,.center)
     }
+    // MARK: - Functions
+    func configCell(viewModel: ViewModel) {
+       
+    }
     
    private func roundTopCorners(of view: UIView, by radius: CGFloat) {
        
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = radius
     }
+    private func setupAppearance() {
+        titleLable.fontTextStyle =  .smilesHeadline2
+        descriptionLable.fontTextStyle =  .smilesBody2
+        nextButton.fontTextStyle =  .smilesHeadline4
+        goToExplorerButton.fontTextStyle =  .smilesHeadline4
+    }
+    // MARK: - IBActions
+    @IBAction func didTabCrossButton(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.didTabCrossButton()
+        }
+    }
+    @IBAction func didTabNextButton(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.didTabNextButton()
+        }
+    }
+    @IBAction func didTabGoButton(_ sender: UIButton) {
+        if let delegate = delegate {
+            delegate.didTabGoButton()
+        }
+    }
+}
+
+extension AboutScrollableCollectionViewCell {
     
+    struct ViewModel {
+        var backgroundColor: String?
+        var foreGroundImage: String?
+        var title: String?
+        var description: String?
+        var nextButtonTitle: String?
+        var goButtonTitle: String?
+    }
 }

@@ -61,7 +61,8 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
 }
 
-extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate, AboutScrollableCollectionCellDelegate {
+    
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return 3
@@ -71,8 +72,16 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
          
          let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
          cell.pageController.currentPage = indexPath.row
-    
+         cell.delegate = self
         return cell
     }
-
+    func didTabCrossButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    func didTabGoButton() {
+        
+    }
+    func didTabNextButton() {
+        
+    }
 }
