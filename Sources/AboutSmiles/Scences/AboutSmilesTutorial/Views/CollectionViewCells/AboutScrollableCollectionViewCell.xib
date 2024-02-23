@@ -48,13 +48,13 @@
                                 <rect key="frame" x="0.0" y="494" width="375" height="318"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore the best of UAE with Smiles Explorer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJd-5b-zfR">
-                                        <rect key="frame" x="16" y="24" width="343" height="53"/>
+                                        <rect key="frame" x="16" y="24.000000000000004" width="343" height="51.333333333333343"/>
                                         <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="22"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zwd-mq-Igd">
-                                        <rect key="frame" x="16" y="93" width="343" height="60"/>
+                                        <rect key="frame" x="16" y="91.333333333333371" width="343" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Uwd-qt-FvF"/>
                                         </constraints>
@@ -63,11 +63,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LIe-UQ-83r" customClass="JXPageControlJump" customModule="SmilesPageController">
-                                        <rect key="frame" x="16" y="169" width="150" height="30"/>
+                                        <rect key="frame" x="16" y="167.33333333333337" width="50" height="30"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="4KZ-kb-sTY"/>
-                                            <constraint firstAttribute="width" priority="250" constant="150" id="bsL-Rn-U7F"/>
+                                            <constraint firstAttribute="width" constant="50" id="U3J-Ia-gzC"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="progress">
@@ -77,7 +77,7 @@
                                                 <color key="value" red="0.82352941180000006" green="0.83137254900000002" blue="0.85098039219999999" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="activeColor">
-                                                <color key="value" red="0.30196078430000001" green="0.31764705879999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="value" red="0.42745098469999998" green="0.26274511220000002" blue="0.53725492949999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="isAnimation" value="YES"/>
                                             <userDefinedRuntimeAttribute type="size" keyPath="activeSize">
@@ -86,10 +86,16 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="columnSpacing">
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="numberOfPages">
+                                                <integer key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="inactiveSize">
+                                                <size key="value" width="8" height="8"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epp-ZX-hNF" customClass="UICustomButton" customModule="SmilesUtilities">
-                                        <rect key="frame" x="120" y="231" width="239" height="48"/>
+                                        <rect key="frame" x="120" y="229.33333333333337" width="239" height="48"/>
                                         <color key="backgroundColor" red="0.47450980390000003" green="0.25882352939999997" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="239" id="Ud2-h4-d7W"/>
@@ -107,7 +113,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-M9-mPS">
-                                        <rect key="frame" x="16" y="233" width="53" height="41"/>
+                                        <rect key="frame" x="16" y="232.33333333333337" width="51" height="40"/>
                                         <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="24"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Next">
@@ -171,7 +177,7 @@
     </objects>
     <designables>
         <designable name="epp-ZX-hNF">
-            <size key="intrinsicContentSize" width="159" height="32"/>
+            <size key="intrinsicContentSize" width="156" height="31"/>
         </designable>
     </designables>
     <resources>

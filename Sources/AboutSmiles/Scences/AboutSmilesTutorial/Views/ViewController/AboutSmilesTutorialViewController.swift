@@ -71,12 +71,4 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
         let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
         return cell
     }
-    
-     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if let data = collectionsData?[safe: indexPath.row] as? GetTopOffersResponseModel.TopOfferAdsDO {
-//            callBack?(data)
-//        } else if let data = collectionsData?[safe: indexPath.row] as? GetTopAdsResponseModel.TopAdsDto.TopAd {
-//            topAdsCallBack?(data)
-//        }
-    }
 }
