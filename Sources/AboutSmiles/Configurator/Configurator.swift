@@ -20,5 +20,4 @@ public struct AboutSmilesConfigurator {
             return AboutSmilesTutorialViewController()
         }
     }
-    
 }

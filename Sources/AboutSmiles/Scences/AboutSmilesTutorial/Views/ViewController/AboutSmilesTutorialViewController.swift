@@ -9,9 +9,9 @@ import UIKit
 import SmilesUtilities
 import SmilesPageController
 
-class AboutSmilesTutorialViewController: UIViewController {
+final class AboutSmilesTutorialViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     public var collectionsData: [Any]? {
         didSet {
@@ -24,20 +24,18 @@ class AboutSmilesTutorialViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.configCollectionView()
-        // Do any additional setup after loading the view.
+        configCollectionView()
     }
     
     init() {
-       
-        super.init(nibName: "AboutSmilesTutorialViewController", bundle: Bundle.module)
+        super.init(nibName: AboutSmilesTutorialViewController.className, bundle: Bundle.module)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupCollectionViewLayout() ->  UICollectionViewCompositionalLayout {
+    private func setupCollectionViewLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
             
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
@@ -48,35 +46,19 @@ class AboutSmilesTutorialViewController: UIViewController {
             
             return section
         }
-        
         return layout
     }
     
-
     // MARK: - Functions
     private func configCollectionView() {
-        [AboutScrollableCollectionViewCell.self
-        ].forEach({
-            collectionView.register(
-                UINib(nibName: String(describing: $0.self), bundle: .module),
-                forCellWithReuseIdentifier: String(describing: $0.self))
-        })
+        collectionView.register(UINib(nibName: AboutScrollableCollectionViewCell.className, bundle: .module),
+            forCellWithReuseIdentifier: AboutScrollableCollectionViewCell.className)
         
         collectionView.collectionViewLayout = setupCollectionViewLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInsetAdjustmentBehavior = .never
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -86,8 +68,7 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutScrollableCollectionViewCell", for: indexPath) as? AboutScrollableCollectionViewCell else {return UICollectionViewCell()}
-        
+        let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
         return cell
     }
     
