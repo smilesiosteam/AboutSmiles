@@ -33,3 +33,6 @@ extension OfferCollectionViewCell {
         var image: String?
     }
 }
+
+
+
