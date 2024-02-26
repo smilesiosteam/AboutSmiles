@@ -21,4 +21,5 @@ struct StoriesUIModel {
     var buttonOneUrl: String?
     var buttonOneText: String?
     var buttonSecondText: String?
+    var backgroundColor: String?
 }
