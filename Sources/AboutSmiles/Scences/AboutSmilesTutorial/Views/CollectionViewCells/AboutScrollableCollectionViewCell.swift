@@ -20,7 +20,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Outltes
     @IBOutlet private weak var backgroundColorView: UIView!
-    @IBOutlet private weak var foregroundImageView: UIView!
+    @IBOutlet private weak var foregroundImageView: UIImageView!
     @IBOutlet private weak var roundedView: UIView!
     @IBOutlet  weak var pageController: JXPageControlJump!
     @IBOutlet private weak var pageControlHeight: NSLayoutConstraint!
@@ -54,8 +54,19 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
         pageController.contentAlignment = JXPageControlAlignment(.left,.center)
     }
     // MARK: - Functions
-    func configCell(viewModel: ViewModel) {
+    func configCell(model: StoriesUIModel) {
        
+        titleLable.text = model.title
+        descriptionLable.text = model.description
+       nextButton.setTitle(model.buttonSecondText, for: .normal)
+        goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
+       backgroundColorView.backgroundColor = UIColor(hexString: model.backgroundColor ?? "")
+        foregroundImageView.setImageWithUrlString(model.imageUrl.asStringOrEmpty(), backgroundColor: .white) { [weak self] image in
+            if let image = image {
+                self?.foregroundImageView.image = image
+            }
+        }
+        
     }
     
    private func roundTopCorners(of view: UIView, by radius: CGFloat) {
@@ -87,14 +98,3 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension AboutScrollableCollectionViewCell {
-    
-    struct ViewModel {
-        var backgroundColor: String?
-        var foreGroundImage: String?
-        var title: String?
-        var description: String?
-        var nextButtonTitle: String?
-        var goButtonTitle: String?
-    }
-}

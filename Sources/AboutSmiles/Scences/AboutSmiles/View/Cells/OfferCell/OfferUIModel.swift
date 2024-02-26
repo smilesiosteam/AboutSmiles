@@ -14,7 +14,7 @@ struct OfferUIModel {
     var stories: [StoriesUIModel] = []
 }
 
-struct StoriesUIModel {
+public struct StoriesUIModel {
     var title: String?
     var description: String?
     var imageUrl: String?
