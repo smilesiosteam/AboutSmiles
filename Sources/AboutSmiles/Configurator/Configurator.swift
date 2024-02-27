@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import NetworkingLayer
 
 public struct AboutSmilesConfigurator {
     
@@ -22,7 +23,23 @@ public struct AboutSmilesConfigurator {
                 vc.collectionsData = offers
             return vc
         case .aboutSmiles:
-            return AboutSmilesViewController()
+            return getAboutSmitesView()
         }
+    }
+    
+    private static func getAboutSmitesView() -> UIViewController {
+        let offersUseCase = OffersUseCase(repository: repository)
+        let faqsUseCase = FAQUseCase(repository: repository)
+        let viewModel = AboutSmilesViewModel(faqsViewModel: faqsUseCase, storyUseCase: offersUseCase)
+        let view = AboutSmilesViewController(viewModel: viewModel)
+        return view
+    }
+    
+    static var network: Requestable {
+        NetworkingLayerRequestable(requestTimeOut: 60)
+    }
+    
+    static var repository: AboutSmilesRepositoryProtocol{
+        AboutSmilesRepository(networkRequest: network)
     }
 }

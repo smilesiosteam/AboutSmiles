@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import NetworkingLayer
 
 protocol FAQUseCaseProtocol {
     func fetchFAQs() -> AnyPublisher<FAQUseCase.State, Never>
@@ -39,7 +38,7 @@ extension FAQUseCase: FAQUseCaseProtocol {
             } receiveValue: { response in
                 let faqs = response.faqsDetails ?? []
                 let faqsUIModels = faqs.map({ self.map($0) })
-                
+                promise(.success(.success(faqs: faqsUIModels)))
             }.store(in: &cancellables)
         }
         .eraseToAnyPublisher()

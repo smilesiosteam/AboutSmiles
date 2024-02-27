@@ -8,5 +8,15 @@
 import Foundation
 
 enum Localization {
+    case offersTitle
+    case faqsTitle
     
+    var text: String {
+        switch self {
+        case .offersTitle:
+            return "Discover offers"
+        case .faqsTitle:
+            return "Still have questions?"
+        }
+    }
 }

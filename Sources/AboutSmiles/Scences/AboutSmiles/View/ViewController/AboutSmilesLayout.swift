@@ -11,7 +11,7 @@ final class AboutSmilesLayout {
     
     func create(sections: [AboutSmilesSections]) -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            let section = sections[sectionIndex]
+            let section = sections[safe: sectionIndex] ?? .faqs(faqs: [])
             switch section {
             case .offers:
                 return self?.offersLayout(layoutEnvironment)

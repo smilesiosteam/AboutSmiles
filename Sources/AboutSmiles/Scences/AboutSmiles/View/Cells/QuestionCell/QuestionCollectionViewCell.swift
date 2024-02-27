@@ -29,11 +29,11 @@ final class QuestionCollectionViewCell: UICollectionViewCell {
         answerLabel.fontTextStyle = .smilesBody3
     }
     
-    func configCell(viewModel: ViewModel) {
-        answerLabel.attributedText = viewModel.answer.asStringOrEmpty().htmlToAttributedString
-        questionLabel.text = viewModel.question
-        answerLabel.isHidden = !viewModel.isOpen
-        arrowImage.transform = viewModel.isOpen ? CGAffineTransformMakeRotation(.pi) : CGAffineTransform.identity
+    func configCell(viewModel: ViewModel?) {
+        answerLabel.attributedText = viewModel?.answer.asStringOrEmpty().htmlToAttributedString
+        questionLabel.text = viewModel?.question
+        answerLabel.isHidden = !(viewModel?.isOpen ?? false)
+        arrowImage.transform = (viewModel?.isOpen ?? false) ? CGAffineTransformMakeRotation(.pi) : CGAffineTransform.identity
     }
     
     @IBAction private func showAnswetTapped(_ sender: Any) {

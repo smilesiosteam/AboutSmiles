@@ -7,37 +7,33 @@
 
 import UIKit
 import Combine
+import SmilesLoader
 
-public final class AboutSmilesViewController: UIViewController {
+final class AboutSmilesViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
-    
+    @IBOutlet private weak var backButtonOutlet: UIButton! {
+        didSet { backButtonOutlet.setImage(UIImage(named: "BackArrow_black"), for: .normal) }
+    }
+   
     // MARK: - Properties
     private let layout = AboutSmilesLayout()
-    private let viewModel = AboutSmilesViewModel()
+    private let viewModel: AboutSmilesViewModel
     private var cancellables = Set<AnyCancellable>()
     private var sections:  [AboutSmilesSections] = []
+    
     // MARK: - Life Cycle
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-       
-        
-        viewModel.state.sink { state in
-            switch state {
-            case .success(let models):
-                self.sections = models
-                self.collectionView.collectionViewLayout = self.layout.create(sections: models)
-                self.collectionView.reloadData()
-            }
-            
-        }
-        .store(in: &cancellables)
+        bindViewModel()
         viewModel.loadData()
     }
     
-    public init() {
+    // MARK: - Init
+    init(viewModel: AboutSmilesViewModel) {
+        self.viewModel = viewModel
         super.init(nibName: AboutSmilesViewController.className, bundle: Bundle.module)
     }
     
@@ -48,6 +44,7 @@ public final class AboutSmilesViewController: UIViewController {
     // MARK: - Functions
     private func setupCollectionView() {
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.collectionViewLayout = layout.create(sections: sections)
         
         collectionView.register(UINib(nibName: OfferCollectionViewCell.className, bundle: .module),
@@ -61,21 +58,47 @@ public final class AboutSmilesViewController: UIViewController {
             withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className)
     }
     
+    private func bindViewModel() {
+        viewModel.statePublisher.sink { [weak self] state in
+            guard let self else {
+                return
+            }
+            
+            switch state {
+            case .success(let models):
+                self.sections = models
+                self.collectionView.collectionViewLayout = self.layout.create(sections: models)
+                self.collectionView.reloadData()
+            case .showLoader:
+                SmilesLoader.show(isClearBackground: false)
+            case .hideLoader:
+                SmilesLoader.dismiss()
+            case .showError(let message):
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.showAlertWithOkayOnly(message: message)
+                }
+            }
+        }.store(in: &cancellables)
+    }
+    
+    // MARK: - Button Actions
     @IBAction private func popTapped(_ sender: Any) {
         navigationController?.popViewController()
     }
-    
 }
 
+// MARK: - UICollectionViewDataSource
 extension AboutSmilesViewController: UICollectionViewDataSource {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
     }
     
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let type = sections[section]
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let type = sections[safe: section] else {
+            return 0
+        }
+        
         switch type {
-            
         case .offers(offers: let offers):
             return offers.count
         case .faqs(faqs: let faqs):
@@ -83,30 +106,51 @@ extension AboutSmilesViewController: UICollectionViewDataSource {
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let type = sections[indexPath.section]        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let type = sections[safe: indexPath.section] else {
+            return .init()
+        }
         switch type {
         case .offers(offers: let offers):
             let cell = collectionView.dequeueReusableCell(withClass: OfferCollectionViewCell.self, for: indexPath)
-            cell.configCell(viewModel: offers[indexPath.row])
+            cell.configCell(viewModel: offers[safe: indexPath.row])
             return cell
         case .faqs(faqs: let faqs):
             let cell = collectionView.dequeueReusableCell(withClass: QuestionCollectionViewCell.self, for: indexPath)
-            cell.configCell(viewModel: faqs[indexPath.row])
+            cell.configCell(viewModel: faqs[safe: indexPath.row])
             cell.didSelect = { [weak self] in
-                faqs[indexPath.row].isOpen = !(( faqs[indexPath.row].isOpen) )
-                
+                faqs[safe: indexPath.row]?.isOpen.toggle()
                 self?.collectionView.reloadItems(at: [indexPath])
             }
             return cell
         }
     }
     
-    public func collectionView(_ collectionView: UICollectionView,
-                               viewForSupplementaryElementOfKind kind: String,
-                               at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue, withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className, for: indexPath) as! AboutSmilesHeaderCollectionViewCell
-        header.configCell(with: "Discover offers")
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue, 
+                                                                           withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className,
+                                                                           for: indexPath) as? AboutSmilesHeaderCollectionViewCell 
+        else { return .init() }
+        let title = sections[safe: indexPath.section]?.title
+        header.configCell(with: title)
         return header
+    }
+}
+
+// MARK: - UICollectionViewDelegate
+extension AboutSmilesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedSection = sections[safe: indexPath.section],
+              case .offers(offers: let offers) = selectedSection,
+              let selectedOffer = offers[safe: indexPath.row]
+        else {
+            return
+        }
+        
+        let detailsView = AboutSmilesConfigurator.create(type: .aboutSmilesTutorial(stories: selectedOffer.stories))
+        detailsView.modalPresentationStyle = .fullScreen
+        present(detailsView)
     }
 }

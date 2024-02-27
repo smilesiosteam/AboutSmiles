@@ -50,6 +50,7 @@ final class AboutSmilesViewModel {
         if let faqs = handleFaqs(with: faqs) {
             sections.append(.faqs(faqs: faqs))
         }
+        stateSubject.send(.success(models: sections))
     }
     
     private func handleOffers(with state: OffersUseCase.State) -> [OfferUIModel]? {

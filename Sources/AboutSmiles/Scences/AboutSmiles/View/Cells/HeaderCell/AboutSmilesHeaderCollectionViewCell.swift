@@ -14,8 +14,8 @@ final class AboutSmilesHeaderCollectionViewCell: UICollectionReusableView {
     @IBOutlet private weak var titleLabel: UILabel!
     
     // MARK: - Functions
-    func configCell(with title: String) {
-//        titleLabel.text = title
+    func configCell(with title: String?) {
+        titleLabel.text = title
         titleLabel.fontTextStyle = .smilesHeadline2
     }
 }

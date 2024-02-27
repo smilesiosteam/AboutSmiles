@@ -7,8 +7,6 @@
 
 import Foundation
 import Combine
-import SmilesUtilities
-import NetworkingLayer
 
 protocol OffersUseCaseProtocol {
     func fetchStories() -> AnyPublisher<OffersUseCase.State, Never>

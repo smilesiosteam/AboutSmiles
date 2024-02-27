@@ -21,8 +21,8 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Functions
-    func configCell(viewModel: OfferUIModel) {
-        titleLabel.text = viewModel.title
+    func configCell(viewModel: OfferUIModel?) {
+        titleLabel.text = viewModel?.title
         titleLabel.fontTextStyle = .smilesTitle2
     }
 }

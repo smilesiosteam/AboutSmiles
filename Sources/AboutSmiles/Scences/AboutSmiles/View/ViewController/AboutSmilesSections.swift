@@ -10,4 +10,13 @@ import Foundation
 enum AboutSmilesSections {
     case offers(offers: [OfferUIModel])
     case faqs(faqs: [QuestionCollectionViewCell.ViewModel])
+    
+    var title: String {
+        switch self {
+        case .offers:
+            Localization.offersTitle.text
+        case .faqs:
+            Localization.faqsTitle.text
+        }
+    }
 }
