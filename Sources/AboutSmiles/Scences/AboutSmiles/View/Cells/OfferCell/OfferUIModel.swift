@@ -9,7 +9,7 @@ import Foundation
 
 struct OfferUIModel {
     var title: String?
-    var storyImage: String?
+    var image: String?
     var backgroundColor: String?
     var stories: [StoriesUIModel] = []
 }

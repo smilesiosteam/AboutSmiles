@@ -6,25 +6,18 @@
 //
 
 import UIKit
-extension AboutSmilesLayout {
-    enum Section: Int, CaseIterable {
-        case offers = 0
-        case faqs = 1
-    }
-}
 
 final class AboutSmilesLayout {
     
-    func create() -> UICollectionViewLayout {
+    func create(sections: [AboutSmilesSections]) -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, layoutEnvironment in
-            let type = Section(rawValue: sectionIndex) ?? .faqs
-            switch type {
+            let section = sections[sectionIndex]
+            switch section {
             case .offers:
                 return self?.offersLayout(layoutEnvironment)
             case .faqs:
                 return self?.faqsLayout()
             }
-
         }
         // Layout
         let configuration = UICollectionViewCompositionalLayoutConfiguration()
@@ -40,12 +33,11 @@ final class AboutSmilesLayout {
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemSize.heightDimension)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-
+        
         let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = .init(top: 30, leading: 0, bottom: 0, trailing: 0)
+        section.contentInsets = .init(top: 30, leading: 0, bottom: 0, trailing: 0)
         section.interGroupSpacing = 24
         section.boundarySupplementaryItems = [createHeaderItem()]
-        
         return section
     }
     

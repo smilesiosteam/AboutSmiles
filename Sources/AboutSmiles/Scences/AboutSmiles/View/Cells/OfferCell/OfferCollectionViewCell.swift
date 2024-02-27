@@ -21,18 +21,8 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Functions
-    func configCell(viewModel: ViewModel) {
-        titleLabel.text = "Get the best \n of Smiles "
+    func configCell(viewModel: OfferUIModel) {
+        titleLabel.text = viewModel.title
         titleLabel.fontTextStyle = .smilesTitle2
     }
 }
-
-extension OfferCollectionViewCell {
-    struct ViewModel {
-        var title: String?
-        var image: String?
-    }
-}
-
-
-
