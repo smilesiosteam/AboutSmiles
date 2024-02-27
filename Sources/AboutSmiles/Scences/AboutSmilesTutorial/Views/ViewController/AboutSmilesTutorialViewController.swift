@@ -13,14 +13,9 @@ final class AboutSmilesTutorialViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    public var collectionsData: [Any]? {
-        didSet {
-            collectionView?.reloadData()
-        }
-    }
+    public var collectionsData: [StoriesUIModel]?
     public static let module = Bundle.module
-   // public var callBack: ((GetTopOffersResponseModel.TopOfferAdsDO) -> ())?
-   // public var topAdsCallBack: ((GetTopAdsResponseModel.TopAdsDto.TopAd) -> ())?
+   
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,14 +60,17 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
     
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 3
+         return collectionsData?.count ?? 0
     }
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-         
          let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
          cell.pageController.currentPage = indexPath.row
          cell.delegate = self
+         if let item = self.collectionsData?[indexPath.row] {
+             cell.configCell(model: item)
+         }
+         
         return cell
     }
     func didTabCrossButton() {

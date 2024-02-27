@@ -11,14 +11,16 @@ import UIKit
 public struct AboutSmilesConfigurator {
     
     public enum ConfiguratorType {
-        case aboutSmilesTutorial
+        case aboutSmilesTutorial(stories: [StoriesUIModel]?)
         case aboutSmiles
     }
     
     public static func create(type: ConfiguratorType) -> UIViewController {
         switch type {
-        case .aboutSmilesTutorial:
-            return AboutSmilesTutorialViewController()
+        case .aboutSmilesTutorial(let offers):
+            let vc = AboutSmilesTutorialViewController()
+                vc.collectionsData = offers
+            return vc
         case .aboutSmiles:
             return AboutSmilesViewController()
         }
