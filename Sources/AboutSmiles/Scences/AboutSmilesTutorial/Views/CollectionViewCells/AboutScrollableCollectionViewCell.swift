@@ -58,9 +58,9 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
        
         titleLable.text = model.title
         descriptionLable.text = model.description
-       nextButton.setTitle(model.buttonSecondText, for: .normal)
+        nextButton.setTitle(model.buttonSecondText, for: .normal)
         goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
-       backgroundColorView.backgroundColor = UIColor(hexString: model.backgroundColor ?? "")
+        backgroundColorView.backgroundColor = UIColor(hexString: model.backgroundColor ?? "")
         foregroundImageView.setImageWithUrlString(model.imageUrl.asStringOrEmpty(), backgroundColor: .white) { [weak self] image in
             if let image = image {
                 self?.foregroundImageView.image = image

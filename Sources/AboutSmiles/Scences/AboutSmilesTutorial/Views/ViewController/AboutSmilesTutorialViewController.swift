@@ -65,6 +65,8 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
     
      func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
          let cell = collectionView.dequeueReusableCell(withClass: AboutScrollableCollectionViewCell.self, for: indexPath)
+         cell.pageController.isHidden = collectionsData?.count == 1
+         cell.pageController.numberOfPages = collectionsData?.count ?? 0
          cell.pageController.currentPage = indexPath.row
          cell.delegate = self
          if let item = self.collectionsData?[indexPath.row] {
@@ -74,7 +76,7 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
         return cell
     }
     func didTabCrossButton() {
-        self.navigationController?.popViewController(animated: true)
+        dismiss()
     }
     func didTabGoButton() {
         
