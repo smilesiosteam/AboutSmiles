@@ -13,6 +13,7 @@ final class AboutSmilesViewModel {
     // MARK: - Properties
     private let storyUseCase: OffersUseCaseProtocol
     private let faqsViewModel: FAQUseCaseProtocol
+     let delegate: AboutSmilesDelegate
     private var cancellables = Set<AnyCancellable>()
     private var stateSubject = PassthroughSubject<State, Never>()
     var statePublisher: AnyPublisher<State, Never> {
@@ -20,9 +21,10 @@ final class AboutSmilesViewModel {
     }
     
     // MARK: - Init
-    init(faqsViewModel: FAQUseCaseProtocol, storyUseCase: OffersUseCaseProtocol) {
+    init(faqsViewModel: FAQUseCaseProtocol, storyUseCase: OffersUseCaseProtocol, delegate: AboutSmilesDelegate) {
         self.faqsViewModel = faqsViewModel
         self.storyUseCase = storyUseCase
+        self.delegate = delegate
     }
     
     // MARK: - Functions

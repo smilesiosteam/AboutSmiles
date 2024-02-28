@@ -13,9 +13,10 @@ final class AboutSmilesTutorialViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    public var collectionsData: [StoriesUIModel]?
-    public static let module = Bundle.module
-   
+     var collectionsData: [StoriesUIModel]?
+     static let module = Bundle.module
+    
+     var delegate: AboutSmilesDelegate!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,10 +79,29 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
     func didTabCrossButton() {
         dismiss()
     }
-    func didTabGoButton() {
+    func didTabGoButton(index: Int) {
+        let item = self.collectionsData?[index]
+        if let urlString = item?.buttonOneUrl {
+            delegate.handleDeepLinkRedirection(redirectionUrl: urlString)
+        }
+        
         
     }
     func didTabNextButton() {
-        
+        // Assuming collectionView is your UICollectionView instance
+        let currentIndex = collectionView.indexPathsForVisibleItems.first?.item ?? 0
+        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+
+        var nextIndex = currentIndex + 1
+
+        // Check if the next index exceeds the maximum value
+        if nextIndex >= numberOfItems {
+            // Reset to 0 when reached the maximum value
+            nextIndex = 0
+        }
+
+        let nextIndexPath = IndexPath(item: nextIndex, section: 0)
+        collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
+
     }
 }

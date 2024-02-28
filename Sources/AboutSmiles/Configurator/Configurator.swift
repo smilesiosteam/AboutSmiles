@@ -13,7 +13,7 @@ public struct AboutSmilesConfigurator {
     
     public enum ConfiguratorType {
         case aboutSmilesTutorial(stories: [StoriesUIModel]?)
-        case aboutSmiles
+        case aboutSmiles(delegate: AboutSmilesDelegate)
     }
     
     public static func create(type: ConfiguratorType) -> UIViewController {
@@ -22,15 +22,15 @@ public struct AboutSmilesConfigurator {
             let vc = AboutSmilesTutorialViewController()
                 vc.collectionsData = offers
             return vc
-        case .aboutSmiles:
-            return getAboutSmitesView()
+        case .aboutSmiles(let delegate):
+            return getAboutSmitesView(delegate: delegate)
         }
     }
     
-    private static func getAboutSmitesView() -> UIViewController {
+    private static func getAboutSmitesView(delegate: AboutSmilesDelegate) -> UIViewController {
         let offersUseCase = OffersUseCase(repository: repository)
         let faqsUseCase = FAQUseCase(repository: repository)
-        let viewModel = AboutSmilesViewModel(faqsViewModel: faqsUseCase, storyUseCase: offersUseCase)
+        let viewModel = AboutSmilesViewModel(faqsViewModel: faqsUseCase, storyUseCase: offersUseCase, delegate: delegate)
         let view = AboutSmilesViewController(viewModel: viewModel)
         return view
     }

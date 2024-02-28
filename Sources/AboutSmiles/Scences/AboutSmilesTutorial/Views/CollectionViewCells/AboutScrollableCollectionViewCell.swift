@@ -13,7 +13,7 @@ protocol AboutScrollableCollectionCellDelegate: AnyObject {
     
     func didTabCrossButton()
     func didTabNextButton()
-    func didTabGoButton()
+    func didTabGoButton(index: Int)
 }
 
 final class AboutScrollableCollectionViewCell: UICollectionViewCell {
@@ -93,7 +93,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     }
     @IBAction func didTabGoButton(_ sender: UIButton) {
         if let delegate = delegate {
-            delegate.didTabGoButton()
+            delegate.didTabGoButton(index: sender.tag)
         }
     }
 }
