@@ -58,7 +58,7 @@ extension OffersUseCase: OffersUseCaseProtocol {
     
     private func mapStory(_ story: StoryResponse) -> StoriesUIModel {
         var model = StoriesUIModel()
-        //  model.backgroundColor = story.
+//          model.backgroundColor = story.
         model.buttonOneText = story.buttonOneText
         model.buttonOneUrl = story.buttonOneURL
         model.buttonSecondText = story.buttonSecondText
@@ -117,6 +117,22 @@ var storyData = """
       "storyTitle": "What is Smiles?",
       "storyImage": "https://www.smilesuae.ae/images/APP/storyImage.png",
       "stories": [
+        {
+          "title": "Get your car insured with 3 easy steps",
+          "description": " Descriptive benefits English ",
+          "imageUrl": "https://www.smilesuae.ae/images/APP/SMALL/storyImage.png",
+          "buttonOneUrl": " https://www.smilesuae.ae",
+          "buttonOneText": "Explore Car Insurance",
+          "buttonSecondText": "Next"
+        },
+        {
+          "title": "Get your car insured with 3 easy steps",
+          "description": " Descriptive benefits English ",
+          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
+          "buttonOneUrl": " https://www.smilesuae.ae",
+          "buttonOneText": "Explore Car Insurance",
+          "buttonSecondText": "Next"
+        },
         {
           "title": "Get your car insured with 3 easy steps",
           "description": " Descriptive benefits English ",

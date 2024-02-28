@@ -11,7 +11,7 @@ import SmilesUtilities
 
 protocol AboutScrollableCollectionCellDelegate: AnyObject {
     func didTabCrossButton()
-    func didTabNextButton()
+    func didTabNextButton(cell: AboutScrollableCollectionViewCell)
     func didTabGoButton(index: Int)
 }
 
@@ -86,7 +86,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction private func didTabNextButton(_ sender: UIButton) {
-            delegate?.didTabNextButton()
+            delegate?.didTabNextButton(cell: self)
     }
     
     @IBAction private func didTabGoButton(_ sender: UIButton) {

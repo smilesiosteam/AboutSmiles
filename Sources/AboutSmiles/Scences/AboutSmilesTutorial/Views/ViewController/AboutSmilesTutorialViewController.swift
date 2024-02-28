@@ -85,15 +85,19 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
             delegate?.handleDeepLinkRedirection(redirectionUrl: urlString)
         }
     }
-    func didTabNextButton() {
+    func didTabNextButton(cell: AboutScrollableCollectionViewCell) {
+        
+        guard let index = collectionView.indexPath(for: cell) else {
+            return
+        }
         // Assuming collectionView is your UICollectionView instance
-        let currentIndex = collectionView.indexPathsForVisibleItems.first?.item ?? 0
-        let numberOfItems = collectionView.numberOfItems(inSection: 0)
+        let currentIndex = index.row
+        let numberOfItems = collectionsData?.count ?? 0
 
         var nextIndex = currentIndex + 1
 
         // Check if the next index exceeds the maximum value
-        if nextIndex >= numberOfItems {
+        if nextIndex > numberOfItems {
             // Reset to 0 when reached the maximum value
             nextIndex = 0
         }
