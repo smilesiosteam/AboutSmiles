@@ -119,13 +119,21 @@ var storyData = """
       "storyImage": "https://www.smilesuae.ae/images/APP/storyImage.png",
       "stories": [
         {
-          "title": "Get your car insured with 3 easy steps",
+          "title": "Get your car insured with 1 easy steps",
           "description": " Descriptive benefits English ",
           "imageUrl": "https://www.smilesuae.ae/images/APP/SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",
           "buttonOneText": "Explore Car Insurance",
           "buttonSecondText": "Next",
           "backgroundColor":"#DCDFEF"
+        },
+        {
+          "title": "Get your car insured with 2 easy steps",
+          "description": " Descriptive benefits English ",
+          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
+          "buttonOneUrl": " https://www.smilesuae.ae",
+          "buttonOneText": "Explore Car Insurance",
+          "buttonSecondText": "Next"
         },
         {
           "title": "Get your car insured with 3 easy steps",
@@ -137,7 +145,15 @@ var storyData = """
           "backgroundColor":"#DCDFEF"
         },
         {
-          "title": "Get your car insured with 3 easy steps",
+          "title": "Get your car insured with 4 easy steps",
+          "description": " Descriptive benefits English ",
+          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
+          "buttonOneUrl": " https://www.smilesuae.ae",
+          "buttonOneText": "Explore Car Insurance",
+          "buttonSecondText": "Next"
+        },
+        {
+          "title": "Get your car insured with 5 easy steps",
           "description": " Descriptive benefits English ",
           "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",

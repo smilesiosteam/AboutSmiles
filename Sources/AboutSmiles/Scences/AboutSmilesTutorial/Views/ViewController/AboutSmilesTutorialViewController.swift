@@ -19,6 +19,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollectionView()
+        collectionView.isPagingEnabled = false
     }
     
     init(collectionsData: [StoriesUIModel]?, delegate: AboutSmilesNavigationDelegate?) {
@@ -97,7 +98,7 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
         var nextIndex = currentIndex + 1
 
         // Check if the next index exceeds the maximum value
-        if nextIndex > numberOfItems {
+        if nextIndex >= numberOfItems {
             // Reset to 0 when reached the maximum value
             nextIndex = 0
         }
