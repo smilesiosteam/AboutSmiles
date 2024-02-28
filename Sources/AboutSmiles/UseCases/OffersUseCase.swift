@@ -58,7 +58,7 @@ extension OffersUseCase: OffersUseCaseProtocol {
     
     private func mapStory(_ story: StoryResponse) -> StoriesUIModel {
         var model = StoriesUIModel()
-//          model.backgroundColor = story.
+        model.backgroundColor = story.backgroundColor
         model.buttonOneText = story.buttonOneText
         model.buttonOneUrl = story.buttonOneURL
         model.buttonSecondText = story.buttonSecondText
@@ -109,7 +109,8 @@ var storyData = """
           "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
           "buttonOneUrl": "https://www.smilesuae.ae",
           "buttonOneText": "Go to Smiles Explorer",
-          "buttonSecondText": "Next"
+          "buttonSecondText": "Next",
+          "backgroundColor":"#DCDFEF"
         }
       ]
     },
@@ -123,7 +124,8 @@ var storyData = """
           "imageUrl": "https://www.smilesuae.ae/images/APP/SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",
           "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
+          "buttonSecondText": "Next",
+          "backgroundColor":"#DCDFEF"
         },
         {
           "title": "Get your car insured with 3 easy steps",
@@ -131,7 +133,8 @@ var storyData = """
           "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",
           "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
+          "buttonSecondText": "Next",
+          "backgroundColor":"#DCDFEF"
         },
         {
           "title": "Get your car insured with 3 easy steps",
@@ -139,7 +142,8 @@ var storyData = """
           "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",
           "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
+          "buttonSecondText": "Next",
+          "backgroundColor":"#DCDFEF"
         }
       ]
     },
@@ -153,7 +157,8 @@ var storyData = """
           "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
           "buttonOneUrl": " https://www.smilesuae.ae",
           "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
+          "buttonSecondText": "Next",
+          "backgroundColor":"#DCDFEF"
         }
       ]
     }

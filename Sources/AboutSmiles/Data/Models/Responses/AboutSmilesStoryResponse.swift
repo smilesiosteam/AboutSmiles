@@ -24,9 +24,10 @@ struct StoryResponse: Codable {
     let imageURL: String?
     let buttonOneURL: String?
     let buttonOneText, buttonSecondText: String?
+    let backgroundColor: String?
 
     enum CodingKeys: String, CodingKey {
-        case title, description
+        case title, description, backgroundColor
         case imageURL = "imageUrl"
         case buttonOneURL = "buttonOneUrl"
         case buttonOneText, buttonSecondText
