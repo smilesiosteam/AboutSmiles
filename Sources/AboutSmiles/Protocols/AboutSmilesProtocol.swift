@@ -7,8 +7,6 @@
 
 import Foundation
 
-public protocol AboutSmilesDelegate {
-    
+public protocol AboutSmilesNavigationDelegate: AnyObject {
     func handleDeepLinkRedirection(redirectionUrl: String)
-
 }

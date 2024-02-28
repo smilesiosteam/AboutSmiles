@@ -10,7 +10,6 @@ import SmilesPageController
 import SmilesUtilities
 
 protocol AboutScrollableCollectionCellDelegate: AnyObject {
-    
     func didTabCrossButton()
     func didTabNextButton()
     func didTabGoButton(index: Int)
@@ -18,7 +17,7 @@ protocol AboutScrollableCollectionCellDelegate: AnyObject {
 
 final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Outltes
+    // MARK: - Outlets
     @IBOutlet private weak var backgroundColorView: UIView!
     @IBOutlet private weak var foregroundImageView: UIImageView!
     @IBOutlet private weak var roundedView: UIView!
@@ -46,7 +45,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
         setupAppearance()
         pageController.currentIndex = 0
         pageController.activeColor = .appRevampPurpleMainColor
-        self.roundTopCorners(of:roundedView , by: 20)
+        roundTopCorners(of: roundedView, by: 20)
         // Initialization code
         if AppCommonMethods.languageIsArabic() {
             pageController.transform = CGAffineTransform(rotationAngle: .pi)
@@ -70,31 +69,28 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     }
     
    private func roundTopCorners(of view: UIView, by radius: CGFloat) {
-       
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = radius
     }
+    
     private func setupAppearance() {
         titleLable.fontTextStyle =  .smilesHeadline2
         descriptionLable.fontTextStyle =  .smilesBody2
         nextButton.fontTextStyle =  .smilesHeadline4
         goToExplorerButton.fontTextStyle =  .smilesHeadline4
     }
+    
     // MARK: - IBActions
-    @IBAction func didTabCrossButton(_ sender: UIButton) {
-        if let delegate = delegate {
-            delegate.didTabCrossButton()
-        }
+    @IBAction private func didTabCrossButton(_ sender: UIButton) {
+            delegate?.didTabCrossButton()
     }
-    @IBAction func didTabNextButton(_ sender: UIButton) {
-        if let delegate = delegate {
-            delegate.didTabNextButton()
-        }
+    
+    @IBAction private func didTabNextButton(_ sender: UIButton) {
+            delegate?.didTabNextButton()
     }
-    @IBAction func didTabGoButton(_ sender: UIButton) {
-        if let delegate = delegate {
-            delegate.didTabGoButton(index: sender.tag)
-        }
+    
+    @IBAction private func didTabGoButton(_ sender: UIButton) {
+        delegate?.didTabGoButton(index: sender.tag)
     }
 }
 

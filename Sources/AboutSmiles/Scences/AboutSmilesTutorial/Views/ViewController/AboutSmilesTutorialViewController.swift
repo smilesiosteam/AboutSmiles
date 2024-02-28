@@ -13,17 +13,17 @@ final class AboutSmilesTutorialViewController: UIViewController {
     
     @IBOutlet private weak var collectionView: UICollectionView!
     
-     var collectionsData: [StoriesUIModel]?
-     static let module = Bundle.module
-    
-     var delegate: AboutSmilesDelegate!
+    private let collectionsData: [StoriesUIModel]?
+    private weak var delegate: AboutSmilesNavigationDelegate?
    
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollectionView()
     }
     
-    init() {
+    init(collectionsData: [StoriesUIModel]?, delegate: AboutSmilesNavigationDelegate?) {
+        self.collectionsData = collectionsData
+        self.delegate = delegate
         super.init(nibName: AboutSmilesTutorialViewController.className, bundle: Bundle.module)
     }
     
@@ -36,7 +36,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
             
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(self.view.frame.size.height)), subitems: [item])
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1.0)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .paging
             
@@ -82,10 +82,8 @@ extension AboutSmilesTutorialViewController: UICollectionViewDelegate, UICollect
     func didTabGoButton(index: Int) {
         let item = self.collectionsData?[index]
         if let urlString = item?.buttonOneUrl {
-            delegate.handleDeepLinkRedirection(redirectionUrl: urlString)
+            delegate?.handleDeepLinkRedirection(redirectionUrl: urlString)
         }
-        
-        
     }
     func didTabNextButton() {
         // Assuming collectionView is your UICollectionView instance

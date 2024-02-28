@@ -149,8 +149,7 @@ extension AboutSmilesViewController: UICollectionViewDelegate {
             return
         }
         
-        let detailsView = AboutSmilesConfigurator.create(type: .aboutSmilesTutorial(stories: selectedOffer.stories)) as! AboutSmilesTutorialViewController
-        detailsView.delegate = viewModel.delegate
+        let detailsView = AboutSmilesConfigurator.getAboutSmilesTutorialView(offers: selectedOffer.stories)
         detailsView.modalPresentationStyle = .fullScreen
         present(detailsView)
     }
