@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SmilesUtilities
 import SmilesFontsManager
 
 final class OfferCollectionViewCell: UICollectionViewCell {
@@ -24,5 +25,6 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     func configCell(viewModel: OfferUIModel?) {
         titleLabel.text = viewModel?.title
         titleLabel.fontTextStyle = .smilesTitle2
+        imageOffer.setImageWithUrlString(viewModel?.image ?? "")
     }
 }

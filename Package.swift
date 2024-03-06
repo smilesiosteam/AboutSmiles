@@ -21,7 +21,10 @@ let package = Package(
         .package(url: "https://github.com/smilesiosteam/SmilesSharedServices.git", branch: "main"),
         .package(url: "https://github.com/smilesiosteam/SmilesLanguageManager.git", branch: "main"),
         .package(url: "https://github.com/smilesiosteam/SmilesLoader.git", branch: "main"),
-        .package(url: "https://github.com/smilesiosteam/SmilesBaseMainRequest.git", branch: "main")
+        .package(url: "https://github.com/smilesiosteam/SmilesBaseMainRequest.git", branch: "main"),
+        .package(url: "https://github.com/smilesiosteam/SmilesPageControl.git", branch: "main"),
+        .package(url: "https://github.com/smilesiosteam/SmilesTests.git", branch: "main"),
+
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -34,13 +37,16 @@ let package = Package(
                 .product(name: "SmilesSharedServices", package: "SmilesSharedServices"),
                 .product(name: "SmilesLanguageManager", package: "SmilesLanguageManager"),
                 .product(name: "SmilesLoader", package: "SmilesLoader"),
-                .product(name: "SmilesBaseMainRequestManager", package: "SmilesBaseMainRequest")
+                .product(name: "SmilesBaseMainRequestManager", package: "SmilesBaseMainRequest"),
+                .product(name: "SmilesPageController", package: "SmilesPageControl"),
             ],
             resources: [
                 .process("Resources")
             ]),
         .testTarget(
             name: "AboutSmilesTests",
-            dependencies: ["AboutSmiles"]),
+            dependencies: ["AboutSmiles", "SmilesTests"],
+            resources: [.process("Resources")]
+        ),
     ],swiftLanguageVersions: [.v5]
 )

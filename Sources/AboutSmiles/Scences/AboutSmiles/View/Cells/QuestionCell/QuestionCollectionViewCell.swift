@@ -11,12 +11,12 @@ import SmilesUtilities
 import SmilesFontsManager
 
 final class QuestionCollectionViewCell: UICollectionViewCell {
-
+    
     // MARK: - Outlets
     @IBOutlet private weak var arrowImage: UIImageView!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var answerLabel: UILabel!
-   
+    
     // MARK: - Properties
     var didSelect: (() -> Void)?
     
@@ -42,10 +42,26 @@ final class QuestionCollectionViewCell: UICollectionViewCell {
 }
 
 extension QuestionCollectionViewCell {
-    class ViewModel {
+    final class ViewModel: Equatable {
+        
         var question: String?
         var answer: String?
         var id: Int?
         var isOpen: Bool = false
+        
+        init(question: String? = nil, answer: String? = nil, id: Int? = nil) {
+            self.question = question
+            self.answer = answer
+            self.id = id
+        }
+        
+        static func == (lhs: QuestionCollectionViewCell.ViewModel, 
+                        rhs: QuestionCollectionViewCell.ViewModel) -> Bool {
+            return (lhs.question == rhs.question &&
+                    lhs.answer == rhs.answer &&
+                    lhs.id == rhs.id &&
+                    lhs.isOpen == rhs.isOpen
+            )
+        }
     }
 }

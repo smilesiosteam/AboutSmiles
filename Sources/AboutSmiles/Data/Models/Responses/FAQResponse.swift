@@ -8,13 +8,15 @@
 import Foundation
 
 struct FAQResponse: Codable {
-    let extTransactionID: String?
-    let faqsDetails: [FaqsResponseDetail]?
+    var extTransactionID: String?
+    var faqsDetails: [FaqsResponseDetail]?
 
     enum CodingKeys: String, CodingKey {
         case extTransactionID = "extTransactionId"
         case faqsDetails
     }
+    
+    init() {}
 }
 
 // MARK: - FaqsDetail

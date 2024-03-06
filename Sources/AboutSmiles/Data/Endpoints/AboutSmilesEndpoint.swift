@@ -8,12 +8,12 @@
 import Foundation
 
 enum AboutSmilesEndpoint {
-    case stories
+    case offers
     case faqs
     
     var url: String {
         switch self {
-        case .stories:
+        case .offers:
             return "home/v1/about-smiles-stories"
         case .faqs:
             return "faq/get-Faqs-details"

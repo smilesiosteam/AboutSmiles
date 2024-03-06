@@ -30,13 +30,13 @@ final class AboutSmilesRepository {
 extension AboutSmilesRepository: AboutSmilesRepositoryProtocol {
    
     func fetchFaqs() -> AnyPublisher<FAQResponse, NetworkError> {
-        let requestModel = FAQsDetailsRequest(faqId: 9)
+        let requestModel = FAQsDetailsRequest(faqId: 12)
         let request = AboutSmilesRequest.getFaqs(request: requestModel).createRequest(endPoint: .faqs)
         return networkRequest.request(request)
     }
     
     func fetchOffers() -> AnyPublisher<AboutSmilesStoryListResponse, NetworkError> {
-        let request = AboutSmilesRequest.getOffers(request: .init()).createRequest(endPoint: .faqs)
+        let request = AboutSmilesRequest.getOffers(request: .init()).createRequest(endPoint: .offers)
         return networkRequest.request(request)
     }
 }

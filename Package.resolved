@@ -24,7 +24,7 @@
       "location" : "https://github.com/smilesiosteam/NetworkingLayer.git",
       "state" : {
         "branch" : "main",
-        "revision" : "8ca4cfd1d524c7776f86e89b91ae3aae1270d9e7"
+        "revision" : "8f6901a1bd7f60712f960cd2953fa73e7d59c395"
       }
     },
     {
@@ -91,6 +91,15 @@
       }
     },
     {
+      "identity" : "smilespagecontrol",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smilesiosteam/SmilesPageControl.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "433bf5965963ce27fc1a78480ec3627cc3425e5c"
+      }
+    },
+    {
       "identity" : "smilessharedservices",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesSharedServices.git",
@@ -109,12 +118,21 @@
       }
     },
     {
+      "identity" : "smilestests",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/smilesiosteam/SmilesTests.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "b90e47895a31a31b8c3d67c53442914c5ea86d5c"
+      }
+    },
+    {
       "identity" : "smilesutilities",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smilesiosteam/SmilesUtilities.git",
       "state" : {
         "branch" : "main",
-        "revision" : "e70d1a117f7f59cd1c2d639f7cb6f78aa583713a"
+        "revision" : "64bc2faa681461a23caae400c48522f594523acf"
       }
     }
   ],

@@ -54,7 +54,7 @@ extension FAQUseCase: FAQUseCaseProtocol {
 }
 
 extension FAQUseCase {
-    enum State {
+    enum State: Equatable {
         case success(faqs: [QuestionCollectionViewCell.ViewModel])
         case showError(message: String)
     }

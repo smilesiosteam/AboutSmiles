@@ -39,7 +39,8 @@ extension OffersUseCase: OffersUseCaseProtocol {
                         promise(.success(.showError(message: error.localizedDescription)))
                     }
                 } receiveValue: { response in
-                    let response = convertStringToModel(storyData)?.aboutSmilesStory ?? []
+                    let response = response.aboutSmilesStory ?? []
+//                    convertStringToModel(storyData)?.aboutSmilesStory ?? []
                     let offers = response.map({ self.map($0) })
                     promise(.success(.success(offers: offers)))
                 }

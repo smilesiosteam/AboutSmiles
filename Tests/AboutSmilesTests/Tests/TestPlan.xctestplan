@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "92D5FB17-D436-40F2-9E97-428274F18D84",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AboutSmilesTests",
+        "name" : "AboutSmilesTests"
+      }
+    }
+  ],
+  "version" : 1
+}
