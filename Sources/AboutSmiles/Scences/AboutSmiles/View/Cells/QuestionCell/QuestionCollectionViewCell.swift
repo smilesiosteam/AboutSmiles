@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SmilesUtilities
 import SmilesFontsManager
 
 final class QuestionCollectionViewCell: UICollectionViewCell {
@@ -30,7 +29,7 @@ final class QuestionCollectionViewCell: UICollectionViewCell {
     }
     
     func configCell(viewModel: ViewModel?) {
-        answerLabel.attributedText = viewModel?.answer.asStringOrEmpty().htmlToAttributedString
+        answerLabel.text = viewModel?.answer
         questionLabel.text = viewModel?.question
         answerLabel.isHidden = !(viewModel?.isOpen ?? false)
         arrowImage.transform = (viewModel?.isOpen ?? false) ? CGAffineTransformMakeRotation(.pi) : CGAffineTransform.identity
@@ -43,7 +42,6 @@ final class QuestionCollectionViewCell: UICollectionViewCell {
 
 extension QuestionCollectionViewCell {
     final class ViewModel: Equatable {
-        
         var question: String?
         var answer: String?
         var id: Int?
