@@ -31,7 +31,7 @@ public struct AboutSmilesConfigurator {
     private static func getAboutSmitesView() -> UIViewController {
         let offersUseCase = OffersUseCase(repository: repository)
         let faqsUseCase = FAQUseCase(repository: repository)
-        let viewModel = AboutSmilesViewModel(faqsViewModel: faqsUseCase, storyUseCase: offersUseCase)
+        let viewModel = AboutSmilesViewModel(faqsUseCase: faqsUseCase, storyUseCase: offersUseCase)
         let view = AboutSmilesViewController(viewModel: viewModel)
         return view
     }

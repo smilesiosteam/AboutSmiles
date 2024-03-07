@@ -12,7 +12,7 @@ final class AboutSmilesViewModel {
     
     // MARK: - Properties
     private let storyUseCase: OffersUseCaseProtocol
-    private let faqsViewModel: FAQUseCaseProtocol
+    private let faqsUseCase: FAQUseCaseProtocol
     private var cancellables = Set<AnyCancellable>()
     private var stateSubject = PassthroughSubject<State, Never>()
     var statePublisher: AnyPublisher<State, Never> {
@@ -20,8 +20,8 @@ final class AboutSmilesViewModel {
     }
     
     // MARK: - Init
-    init(faqsViewModel: FAQUseCaseProtocol, storyUseCase: OffersUseCaseProtocol) {
-        self.faqsViewModel = faqsViewModel
+    init(faqsUseCase: FAQUseCaseProtocol, storyUseCase: OffersUseCaseProtocol) {
+        self.faqsUseCase = faqsUseCase
         self.storyUseCase = storyUseCase
     }
     
@@ -30,7 +30,7 @@ final class AboutSmilesViewModel {
         stateSubject.send(.showLoader)
         Publishers.Zip(
             storyUseCase.fetchStories(),
-            faqsViewModel.fetchFAQs())
+            faqsUseCase.fetchFAQs())
         .sink { [weak self] offers, faqs in
             guard let self else {
                 return
@@ -76,7 +76,7 @@ final class AboutSmilesViewModel {
 }
 
 extension AboutSmilesViewModel {
-    enum State {
+    enum State: Equatable {
         case success(models: [AboutSmilesSections])
         case showLoader
         case hideLoader

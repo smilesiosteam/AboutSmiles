@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Tests/AboutSmilesTests/AboutSmiles copy.xctestplan"
-            default = "YES">
+            reference = "container:Tests/AboutSmilesTests/AboutSmiles copy.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:Tests/AboutSmilesTests/Tests/TestPlan.xctestplan">
+            reference = "container:Tests/AboutSmilesTests/Tests/TestPlan.xctestplan"
+            default = "YES">
          </TestPlanReference>
          <TestPlanReference
             reference = "container:Tests/AboutSmilesTests/Tests/TestPlan.xctestplan">

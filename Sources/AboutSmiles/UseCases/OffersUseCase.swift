@@ -40,7 +40,6 @@ extension OffersUseCase: OffersUseCaseProtocol {
                     }
                 } receiveValue: { response in
                     let response = response.aboutSmilesStory ?? []
-//                    convertStringToModel(storyData)?.aboutSmilesStory ?? []
                     let offers = response.map({ self.map($0) })
                     promise(.success(.success(offers: offers)))
                 }
@@ -71,114 +70,8 @@ extension OffersUseCase: OffersUseCaseProtocol {
 }
 
 extension OffersUseCase {
-    enum State {
+    enum State: Equatable {
         case success(offers: [OfferUIModel])
         case showError(message: String)
     }
 }
-
-func convertStringToModel(_ jsonString: String) -> AboutSmilesStoryListResponse? {
-    // Convert string to Data
-    guard let jsonData = jsonString.data(using: .utf8) else {
-        print("Failed to convert string to data.")
-        return nil
-    }
-    
-    do {
-        // Use JSONDecoder to decode the data into MyModel
-        let decoder = JSONDecoder()
-        let myModel = try decoder.decode(AboutSmilesStoryListResponse.self, from: jsonData)
-        dump(myModel)
-        
-        return myModel
-    } catch {
-        print("Error decoding JSON: \(error)")
-        return nil
-    }
-}
-
-var storyData = """
-{
-  "aboutSmilesStory": [
-    {
-      "storyTitle": " What is New",
-      "storyImage": "https://www.smilesuae.ae/images/APP/storyImage.png",
-      "stories": [
-        {
-          "title": " Explore the best of UAE with Smiles Explorer",
-          "description": " Descriptive benefits English",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": "https://www.smilesuae.ae",
-          "buttonOneText": "Go to Smiles Explorer",
-          "buttonSecondText": "Next",
-          "backgroundColor":"#DCDFEF"
-        }
-      ]
-    },
-    {
-      "storyTitle": "What is Smiles?",
-      "storyImage": "https://www.smilesuae.ae/images/APP/storyImage.png",
-      "stories": [
-        {
-          "title": "Get your car insured with 1 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next",
-          "backgroundColor":"#DCDFEF"
-        },
-        {
-          "title": "Get your car insured with 2 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
-        },
-        {
-          "title": "Get your car insured with 3 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next",
-          "backgroundColor":"#DCDFEF"
-        },
-        {
-          "title": "Get your car insured with 4 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next"
-        },
-        {
-          "title": "Get your car insured with 5 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next",
-          "backgroundColor":"#DCDFEF"
-        }
-      ]
-    },
-    {
-      "storyTitle": "What is Smiles?",
-      "storyImage": "https://www.smilesuae.ae/images/APP/storyImage.png",
-      "stories": [
-        {
-          "title": "Get your car insured with 3 easy steps",
-          "description": " Descriptive benefits English ",
-          "imageUrl": "https://www.smilesuae.ae/images/APP/ SMALL/storyImage.png",
-          "buttonOneUrl": " https://www.smilesuae.ae",
-          "buttonOneText": "Explore Car Insurance",
-          "buttonSecondText": "Next",
-          "backgroundColor":"#DCDFEF"
-        }
-      ]
-    }
-  ]
-}
-"""

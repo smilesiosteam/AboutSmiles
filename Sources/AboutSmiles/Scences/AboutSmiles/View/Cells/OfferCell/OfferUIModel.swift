@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct OfferUIModel {
+struct OfferUIModel: Equatable {
     var title: String?
     var image: String?
     var backgroundColor: String?
     var stories: [StoriesUIModel] = []
 }
 
-public struct StoriesUIModel {
+public struct StoriesUIModel: Equatable {
     var title: String?
     var description: String?
     var imageUrl: String?

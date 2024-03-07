@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum AboutSmilesSections {
+enum AboutSmilesSections: Equatable {
     case offers(offers: [OfferUIModel])
     case faqs(faqs: [QuestionCollectionViewCell.ViewModel])
     

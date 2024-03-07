@@ -30,7 +30,7 @@ final class AboutSmilesRepositoryTests: XCTestCase {
     // MARK: - Test Cases
     func test_fetchFaqs_isCalledRequest() {
         // Given
-        let requestModel = FAQsDetailsRequest(faqId: 9)
+        let requestModel = FAQsDetailsRequest(faqId: 12)
         let request: NetworkRequest = AboutSmilesRequest.getFaqs(request: requestModel).createRequest(endPoint: .faqs)
         
         // When

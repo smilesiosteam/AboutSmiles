@@ -27,7 +27,6 @@ final class FAQUseCaseTests: XCTestCase {
     
     // MARK: - Test Cases
     func test_fetchFAQs_successResponse() throws {
-        
         // Given
         let response = AboutSmilesStubs.getFAQResponse
         repository.requestFaqsResult = .success(response)
@@ -40,7 +39,6 @@ final class FAQUseCaseTests: XCTestCase {
     
     func test_fetchFAQs_failureResponse() throws {
         // Given
-        let response = AboutSmilesStubs.getFAQResponse
         repository.requestFaqsResult = .failure(.badURL(AboutSmilesStubs.errorMessage))
         // When
         let result = try awaitPublisher(sut.fetchFAQs())

@@ -25,5 +25,26 @@ final class OffersUseCaseTests: XCTestCase {
         repository = nil
         sut = nil
     }
-
+    
+    // MARK: - Test Cases
+    func test_fetchFAQs_successResponse() throws {
+        // Given
+        let response = AboutSmilesStubs.getOffersResponse
+        repository.requestOffersResult = .success(response)
+        // When
+        let result = try awaitPublisher(sut.fetchStories())
+        // Then
+        let expectedResult = OffersUseCase.State.success(offers: AboutSmilesStubs.getOfferUIModel)
+        XCTAssertEqual(result, expectedResult)
+    }
+    
+    func test_fetchFAQs_failureResponse() throws {
+        // Given
+        repository.requestOffersResult = .failure(.badURL(AboutSmilesStubs.errorMessage))
+        // When
+        let result = try awaitPublisher(sut.fetchStories())
+        // Then
+        let expectedResult = OffersUseCase.State.showError(message: AboutSmilesStubs.errorMessage)
+        XCTAssertEqual(result, expectedResult)
+    }
 }
