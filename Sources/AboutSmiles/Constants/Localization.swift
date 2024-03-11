@@ -14,9 +14,9 @@ enum Localization {
     var text: String {
         switch self {
         case .offersTitle:
-            return "Discover offers"
+            return "DiscoverOffers".localizedString
         case .faqsTitle:
-            return "Still have questions?"
+            return "StillHaveQuestions".localizedString
         }
     }
 }

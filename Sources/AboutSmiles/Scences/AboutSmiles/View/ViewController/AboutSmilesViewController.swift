@@ -8,15 +8,19 @@
 import UIKit
 import Combine
 import SmilesLoader
+import SmilesUtilities
 
 final class AboutSmilesViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var backButtonOutlet: UIButton! {
-        didSet { backButtonOutlet.setImage(UIImage(named: "BackArrow_black"), for: .normal) }
+        didSet {
+            let icon = AppCommonMethods.languageIsArabic() ? "BackArrow_black_Ar" : "BackArrow_black"
+            backButtonOutlet.setImage(UIImage(named: icon), for: .normal)
+        }
     }
-   
+    
     // MARK: - Properties
     private let layout = AboutSmilesLayout()
     private let viewModel: AboutSmilesViewModel
@@ -129,9 +133,9 @@ extension AboutSmilesViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue, 
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue,
                                                                            withReuseIdentifier: AboutSmilesHeaderCollectionViewCell.className,
-                                                                           for: indexPath) as? AboutSmilesHeaderCollectionViewCell 
+                                                                           for: indexPath) as? AboutSmilesHeaderCollectionViewCell
         else { return .init() }
         let title = sections[safe: indexPath.section]?.title
         header.configCell(with: title)

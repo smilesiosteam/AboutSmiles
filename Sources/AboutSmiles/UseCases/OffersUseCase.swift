@@ -51,7 +51,7 @@ extension OffersUseCase: OffersUseCaseProtocol {
         var model = OfferUIModel()
         model.title = item.storyTitle
         model.image = item.storyImage
-        //  model.backgroundColor
+        model.backgroundColor = item.backgroundColor
         model.stories = (item.stories ?? []).map({ mapStory($0) })
         return model
     }

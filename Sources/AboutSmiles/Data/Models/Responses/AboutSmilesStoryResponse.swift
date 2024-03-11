@@ -15,6 +15,7 @@ struct AboutSmilesStoryListResponse: Codable {
 struct AboutSmilesStoryResponse: Codable {
     let storyTitle: String?
     let storyImage: String?
+    var backgroundColor: String?
     let stories: [StoryResponse]?
 }
 

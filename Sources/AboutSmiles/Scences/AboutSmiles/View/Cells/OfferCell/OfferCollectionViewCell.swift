@@ -25,6 +25,7 @@ final class OfferCollectionViewCell: UICollectionViewCell {
     func configCell(viewModel: OfferUIModel?) {
         titleLabel.text = viewModel?.title
         titleLabel.fontTextStyle = .smilesTitle2
+        imageOffer.backgroundColor = UIColor(hexString: viewModel?.backgroundColor ?? "")
         imageOffer.setImageWithUrlString(viewModel?.image ?? "")
     }
 }
