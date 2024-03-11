@@ -25,7 +25,7 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var pageControlHeight: NSLayoutConstraint!
     @IBOutlet private weak var titleLable: UILabel!
     @IBOutlet private weak var descriptionLable: UILabel!
-    @IBOutlet private weak var nextButton: UIButton!
+    @IBOutlet  weak var nextButton: UIButton!
     @IBOutlet private weak var goToExplorerButton: UIButton!
     
     weak var delegate: AboutScrollableCollectionCellDelegate?
@@ -65,7 +65,13 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
                 self?.foregroundImageView.image = image
             }
         }
-        
+        if let isActive = model.isActive, isActive {
+            goToExplorerButton.isUserInteractionEnabled = true
+            goToExplorerButton.backgroundColor = .appRevampPurpleMainColor
+        } else {
+            goToExplorerButton.isUserInteractionEnabled = false
+            goToExplorerButton.backgroundColor = UIColor(red: 220/255, green: 223/255, blue: 239/255, alpha: 1)
+        }
     }
     
    private func roundTopCorners(of view: UIView, by radius: CGFloat) {

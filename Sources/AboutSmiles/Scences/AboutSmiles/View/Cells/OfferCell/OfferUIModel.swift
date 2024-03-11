@@ -22,4 +22,5 @@ public struct StoriesUIModel: Equatable {
     var buttonOneText: String?
     var buttonSecondText: String?
     var backgroundColor: String?
+    var isActive: Bool?
 }
