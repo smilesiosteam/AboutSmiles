@@ -1,6 +1,6 @@
 //
 //  AboutScrollableCollectionViewCell.swift
-//  
+//
 //
 //  Created by Ghullam  Abbas on 22/02/2024.
 //
@@ -68,9 +68,11 @@ final class AboutScrollableCollectionViewCell: UICollectionViewCell {
         if let isActive = model.isActive, isActive {
             goToExplorerButton.isUserInteractionEnabled = true
             goToExplorerButton.backgroundColor = .appRevampPurpleMainColor
+            goToExplorerButton.setTitleColor(UIColor.white, for: .normal)
         } else {
             goToExplorerButton.isUserInteractionEnabled = false
             goToExplorerButton.backgroundColor = UIColor(red: 220/255, green: 223/255, blue: 239/255, alpha: 1)
+            goToExplorerButton.setTitleColor(UIColor.black.withAlphaComponent(0.5), for: .normal)
         }
     }
     

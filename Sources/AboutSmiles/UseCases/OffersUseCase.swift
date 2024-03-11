@@ -65,6 +65,7 @@ extension OffersUseCase: OffersUseCaseProtocol {
         model.description = story.description
         model.imageUrl = story.imageURL
         model.title = story.title
+        model.isActive = (story.isActive ?? 0) == 1
         return model
     }
 }
