@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -97,52 +97,55 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epp-ZX-hNF" customClass="UICustomButton" customModule="SmilesUtilities">
-                                        <rect key="frame" x="120" y="231" width="239" height="48"/>
-                                        <color key="backgroundColor" red="0.47450980390000003" green="0.25882352939999997" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="239" id="Ud2-h4-d7W"/>
-                                            <constraint firstAttribute="height" constant="48" id="tDO-5r-Acd"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="16"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Go to Smiles Explorer"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="24"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="bgThemIdentifier" value="ButtonBgColor"/>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="titleThemIdentifier" value="ButtonPrimaryTitleColor"/>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="didTabGoButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oCp-Du-6Zk"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-M9-mPS">
-                                        <rect key="frame" x="16" y="233" width="53" height="41"/>
-                                        <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="24"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Next">
-                                            <color key="titleColor" red="0.25882352941176467" green="0.29803921568627451" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTabNextButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fWD-Bh-qVr"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="wM4-BH-0Pk">
+                                        <rect key="frame" x="16" y="231" width="343" height="48"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BWT-M9-mPS">
+                                                <rect key="frame" x="0.0" y="0.0" width="85.666666666666671" height="48"/>
+                                                <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="24"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Next">
+                                                    <color key="titleColor" red="0.25882352941176467" green="0.29803921568627451" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTabNextButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fWD-Bh-qVr"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epp-ZX-hNF" customClass="UICustomButton" customModule="SmilesUtilities">
+                                                <rect key="frame" x="85.666666666666657" y="0.0" width="257.33333333333337" height="48"/>
+                                                <color key="backgroundColor" red="0.47450980390000003" green="0.25882352939999997" blue="0.5568627451" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="48" id="tDO-5r-Acd"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="16"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Go to Smiles Explorer"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="24"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="bgThemIdentifier" value="ButtonBgColor"/>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="titleThemIdentifier" value="ButtonPrimaryTitleColor"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTabGoButton:" destination="gTV-IL-0wX" eventType="touchUpInside" id="oCp-Du-6Zk"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="Zwd-mq-Igd" firstAttribute="top" secondItem="AJd-5b-zfR" secondAttribute="bottom" constant="16" id="0uE-UH-pPR"/>
                                     <constraint firstAttribute="trailing" secondItem="AJd-5b-zfR" secondAttribute="trailing" constant="16" id="3wr-hj-8h8"/>
                                     <constraint firstItem="AJd-5b-zfR" firstAttribute="top" secondItem="y3O-Os-ef8" secondAttribute="top" constant="24" id="FN3-6Q-1oj"/>
-                                    <constraint firstAttribute="trailing" secondItem="epp-ZX-hNF" secondAttribute="trailing" constant="16" id="JXd-Ef-fWJ"/>
                                     <constraint firstItem="LIe-UQ-83r" firstAttribute="top" secondItem="Zwd-mq-Igd" secondAttribute="bottom" constant="16" id="MeS-TH-EV3"/>
                                     <constraint firstItem="LIe-UQ-83r" firstAttribute="leading" secondItem="y3O-Os-ef8" secondAttribute="leading" constant="16" id="T9A-gc-cYK"/>
-                                    <constraint firstItem="BWT-M9-mPS" firstAttribute="leading" secondItem="y3O-Os-ef8" secondAttribute="leading" constant="16" id="WTO-8a-IQ5"/>
-                                    <constraint firstItem="epp-ZX-hNF" firstAttribute="top" secondItem="BWT-M9-mPS" secondAttribute="bottom" constant="-43" id="WkB-zI-mjp"/>
+                                    <constraint firstAttribute="trailing" secondItem="wM4-BH-0Pk" secondAttribute="trailing" constant="16" id="ThQ-Ml-f6X"/>
                                     <constraint firstAttribute="trailing" secondItem="Zwd-mq-Igd" secondAttribute="trailing" constant="16" id="aQY-nk-zyT"/>
+                                    <constraint firstItem="wM4-BH-0Pk" firstAttribute="top" secondItem="LIe-UQ-83r" secondAttribute="bottom" constant="32" id="aXv-aq-iSL"/>
+                                    <constraint firstItem="wM4-BH-0Pk" firstAttribute="leading" secondItem="y3O-Os-ef8" secondAttribute="leading" constant="16" id="hRb-mB-bjN"/>
                                     <constraint firstItem="Zwd-mq-Igd" firstAttribute="leading" secondItem="y3O-Os-ef8" secondAttribute="leading" constant="16" id="iZG-a5-73H"/>
-                                    <constraint firstItem="epp-ZX-hNF" firstAttribute="top" secondItem="LIe-UQ-83r" secondAttribute="bottom" constant="32" id="nhG-o9-UcE"/>
                                     <constraint firstItem="AJd-5b-zfR" firstAttribute="leading" secondItem="y3O-Os-ef8" secondAttribute="leading" constant="16" id="qgP-6E-dLo"/>
                                     <constraint firstAttribute="height" constant="318" id="qzz-m3-qQQ"/>
                                 </constraints>
