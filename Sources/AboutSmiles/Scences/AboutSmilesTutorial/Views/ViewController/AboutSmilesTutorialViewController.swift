@@ -17,8 +17,6 @@ final class AboutSmilesTutorialViewController: UIViewController {
     @IBOutlet private weak var roundedView: UIView!
     @IBOutlet  weak var pageController: JXPageControlJump!
     @IBOutlet private weak var pageControlHeight: NSLayoutConstraint!
-    @IBOutlet private weak var titleLable: UILabel!
-    @IBOutlet private weak var descriptionLable: UILabel!
     @IBOutlet  weak var nextButton: UIButton!
     @IBOutlet private weak var goToExplorerButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -74,15 +72,15 @@ final class AboutSmilesTutorialViewController: UIViewController {
 
             switch swipeGesture.direction {
             case .right:
-                didTabNextButton(nextButton)
+                movePrevious()
             case .left:
-                leftSwipe()
+                didTabNextButton(nextButton)
             default:
                 break
             }
         }
     }
-   private func leftSwipe() {
+   private func movePrevious() {
        
         let currentIndex = currentPageIndex
         var nextIndex = currentIndex - 1
@@ -231,6 +229,7 @@ extension AboutSmilesTutorialViewController {
                         let indexPath1: IndexPath?
                         indexPath1 = IndexPath(row: 1, section: section)
                         self.pageController.currentPage = 0
+                        self.setImage(at: indexPath1!.row)
                         coll.scrollToItem(at: indexPath1!, at: .right, animated: false)
                     }
                 }

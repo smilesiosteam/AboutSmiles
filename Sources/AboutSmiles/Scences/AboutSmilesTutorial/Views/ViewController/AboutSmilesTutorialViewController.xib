@@ -12,23 +12,18 @@
         <array key="CircularXXTT-Medium.ttf">
             <string>CircularXXTT-Medium</string>
         </array>
-        <array key="CircularXXTT-Regular.ttf">
-            <string>CircularXXTT-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutSmilesTutorialViewController" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundColorView" destination="Rp5-xm-Z7f" id="Kie-ni-ySe"/>
                 <outlet property="collectionView" destination="Pvu-Lk-FWl" id="0YY-2Z-sHA"/>
-                <outlet property="descriptionLable" destination="0lz-PI-ShE" id="KmT-Ok-foX"/>
                 <outlet property="foregroundImageView" destination="myZ-cS-c6v" id="WbW-iE-n14"/>
                 <outlet property="goToExplorerButton" destination="jLQ-u1-hoi" id="0me-Sf-3Bq"/>
                 <outlet property="nextButton" destination="lKM-Sl-MTP" id="7OU-1l-7UG"/>
                 <outlet property="pageControlHeight" destination="lgO-Ew-yYF" id="tdG-Y2-Hjs"/>
                 <outlet property="pageController" destination="pRC-Tt-ziT" id="fb5-jt-ezb"/>
                 <outlet property="roundedView" destination="FO7-U3-jve" id="xeL-X8-UQd"/>
-                <outlet property="titleLable" destination="oc5-oY-rEx" id="00H-Vf-KVS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -61,24 +56,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FO7-U3-jve">
                             <rect key="frame" x="0.0" y="534" width="393" height="318"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore the best of UAE with Smiles Explorer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc5-oY-rEx">
-                                    <rect key="frame" x="16" y="24" width="361" height="53"/>
-                                    <fontDescription key="fontDescription" name="CircularXXTT-Medium" family="CircularXX TT" pointSize="22"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lz-PI-ShE">
-                                    <rect key="frame" x="16" y="93" width="361" height="60"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="60" id="iYa-ZW-2FF"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" name="CircularXXTT-Regular" family="CircularXX TT" pointSize="16"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pvu-Lk-FWl">
-                                    <rect key="frame" x="0.0" y="24" width="393" height="129"/>
+                                    <rect key="frame" x="0.0" y="24" width="393" height="124"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="124" id="WIb-hO-OMR"/>
+                                    </constraints>
                                     <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="33P-lc-8A1">
                                         <size key="itemSize" width="128" height="128"/>
                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -88,7 +71,7 @@
                                     <cells/>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pRC-Tt-ziT" customClass="JXPageControlJump" customModule="SmilesPageController">
-                                    <rect key="frame" x="16" y="169" width="50" height="30"/>
+                                    <rect key="frame" x="16" y="164" width="50" height="30"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="CkR-Wo-e9K"/>
@@ -120,7 +103,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ymV-a5-vNK">
-                                    <rect key="frame" x="16" y="231" width="361" height="48"/>
+                                    <rect key="frame" x="16" y="226" width="361" height="48"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKM-Sl-MTP">
                                             <rect key="frame" x="0.0" y="0.0" width="85" height="48"/>
@@ -158,20 +141,13 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="oc5-oY-rEx" firstAttribute="top" secondItem="FO7-U3-jve" secondAttribute="top" constant="24" id="KMF-Xv-j3z"/>
                                 <constraint firstItem="pRC-Tt-ziT" firstAttribute="top" secondItem="Pvu-Lk-FWl" secondAttribute="bottom" constant="16" id="M7d-ov-1qo"/>
                                 <constraint firstItem="ymV-a5-vNK" firstAttribute="leading" secondItem="FO7-U3-jve" secondAttribute="leading" constant="16" id="Oow-wv-hSx"/>
-                                <constraint firstItem="0lz-PI-ShE" firstAttribute="top" secondItem="oc5-oY-rEx" secondAttribute="bottom" constant="16" id="WIo-Wa-EKz"/>
                                 <constraint firstAttribute="trailing" secondItem="Pvu-Lk-FWl" secondAttribute="trailing" id="Xyp-L6-daD"/>
-                                <constraint firstItem="0lz-PI-ShE" firstAttribute="leading" secondItem="FO7-U3-jve" secondAttribute="leading" constant="16" id="fJk-r8-Vym"/>
-                                <constraint firstItem="pRC-Tt-ziT" firstAttribute="top" secondItem="0lz-PI-ShE" secondAttribute="bottom" constant="16" id="gk5-Ia-06R"/>
                                 <constraint firstAttribute="height" constant="318" id="gmi-WP-qO0"/>
                                 <constraint firstAttribute="trailing" secondItem="ymV-a5-vNK" secondAttribute="trailing" constant="16" id="iXO-TN-I9L"/>
-                                <constraint firstAttribute="trailing" secondItem="oc5-oY-rEx" secondAttribute="trailing" constant="16" id="lxT-sU-tPm"/>
-                                <constraint firstItem="oc5-oY-rEx" firstAttribute="leading" secondItem="FO7-U3-jve" secondAttribute="leading" constant="16" id="odj-1E-gy9"/>
                                 <constraint firstItem="ymV-a5-vNK" firstAttribute="top" secondItem="pRC-Tt-ziT" secondAttribute="bottom" constant="32" id="oyA-6i-lRn"/>
                                 <constraint firstItem="Pvu-Lk-FWl" firstAttribute="top" secondItem="FO7-U3-jve" secondAttribute="top" constant="24" id="uNU-18-vE1"/>
-                                <constraint firstAttribute="trailing" secondItem="0lz-PI-ShE" secondAttribute="trailing" constant="16" id="wgt-f8-S2C"/>
                                 <constraint firstItem="Pvu-Lk-FWl" firstAttribute="leading" secondItem="FO7-U3-jve" secondAttribute="leading" id="zIp-nz-MRY"/>
                                 <constraint firstItem="pRC-Tt-ziT" firstAttribute="leading" secondItem="FO7-U3-jve" secondAttribute="leading" constant="16" id="zJZ-wR-cbL"/>
                             </constraints>
