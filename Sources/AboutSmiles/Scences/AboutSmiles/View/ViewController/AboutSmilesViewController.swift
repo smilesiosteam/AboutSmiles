@@ -155,6 +155,6 @@ extension AboutSmilesViewController: UICollectionViewDelegate {
         
         let detailsView = AboutSmilesConfigurator.getAboutSmilesTutorialView(offers: selectedOffer.stories)
         detailsView.modalPresentationStyle = .fullScreen
-        present(detailsView)
+        present(detailsView, animated: false)
     }
 }
