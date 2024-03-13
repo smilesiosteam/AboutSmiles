@@ -13,14 +13,14 @@ import SmilesTutorials
 final class AboutSmilesTutorialViewController: UIViewController {
     
     @IBOutlet private weak var backgroundColorView: UIView!
-    @IBOutlet private weak var foregroundImageView: UIImageView!
     @IBOutlet private weak var roundedView: UIView!
     @IBOutlet  weak var pageController: JXPageControlJump!
     @IBOutlet private weak var pageControlHeight: NSLayoutConstraint!
     @IBOutlet  weak var nextButton: UIButton!
     @IBOutlet private weak var goToExplorerButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
-    
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subTitleLabel: UILabel!
     private let collectionsData: [StoriesUIModel]
     private weak var delegate: AboutSmilesNavigationDelegate?
     private var currentPageIndex: Int = 0
@@ -30,16 +30,12 @@ final class AboutSmilesTutorialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSwipe()
+        
         setupAppearance()
         pageController.currentIndex = 0
         pageController.activeColor = .appRevampPurpleMainColor
         roundTopCorners(of: roundedView, by: 20)
         // Initialization code
-        if AppCommonMethods.languageIsArabic() {
-            pageController.transform = CGAffineTransform(rotationAngle: .pi)
-        }
-        pageController.contentAlignment = JXPageControlAlignment(.left,.center)
         
         setupCollectionView()
         initialSetup()
@@ -57,53 +53,14 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
     
     // MARK: - Functions
-   private func addSwipe() {
-       foregroundImageView.isUserInteractionEnabled = true
-        let directions: [UISwipeGestureRecognizer.Direction] = [.left, .right]
-        for direction in directions {
-            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture))
-            gesture.direction = direction
-            foregroundImageView.addGestureRecognizer(gesture)
-        }
-    }
-    @objc private func respondToSwipeGesture(gesture: UIGestureRecognizer) {
-
-        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
-
-            switch swipeGesture.direction {
-            case .right:
-                movePrevious()
-            case .left:
-                didTabNextButton(nextButton)
-            default:
-                break
-            }
-        }
-    }
-   private func movePrevious() {
-       
-        let currentIndex = currentPageIndex
-        var nextIndex = currentIndex - 1
-        if (nextIndex <= 0) {
-            nextIndex = 0
-            currentPageIndex = 0
-        }
-        let nextIndexPath = IndexPath(item: nextIndex, section: 0)
-        self.setImage(at: currentPageIndex)
-        collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
-    }
-   private func configData(model: StoriesUIModel) {
-       
+    private func configData(model: StoriesUIModel) {
+        
         nextButton.setTitle(model.buttonSecondText, for: .normal)
         goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
-        
+        titleLabel.text = model.title
+        subTitleLabel.text = model.description
         backgroundColorView.backgroundColor = UIColor(hexColorWithAlpha: model.backgroundColor ?? "DCDFEF")
         
-        foregroundImageView.setImageWithUrlString(model.imageUrl.asStringOrEmpty(), backgroundColor: .white) { [weak self] image in
-            if let image = image {
-                self?.foregroundImageView.image = image
-            }
-        }
         if let isActive = model.isActive, isActive {
             goToExplorerButton.isUserInteractionEnabled = true
             goToExplorerButton.backgroundColor = .appRevampPurpleMainColor
@@ -122,12 +79,15 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        
+        titleLabel.fontTextStyle =  .smilesHeadline2
+        subTitleLabel.fontTextStyle =  .smilesBody2
         nextButton.fontTextStyle =  .smilesHeadline4
         goToExplorerButton.fontTextStyle =  .smilesHeadline4
     }
     private func initialSetup() {
         if AppCommonMethods.languageIsArabic() {
+            titleLabel.textAlignment = .right
+            subTitleLabel.textAlignment = .right
             collectionView.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
             pageController.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         }
@@ -145,7 +105,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
     
     private func setupCollectionView() {
-        collectionView.register(UINib(nibName: String(describing: AboutTextSlideCollectionViewCell.self), bundle: Bundle.module), forCellWithReuseIdentifier: String(describing: AboutTextSlideCollectionViewCell.self))
+        collectionView.register(UINib(nibName: String(describing: AboutScrollableCollectionViewCell.self), bundle: Bundle.module), forCellWithReuseIdentifier: String(describing: AboutScrollableCollectionViewCell.self))
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = setupCollectionViewLayout()
@@ -157,7 +117,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
             
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
-            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(94)), subitems: [item])
+            let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1.0)), subitems: [item])
             let section = NSCollectionLayoutSection(group: group)
             section.orthogonalScrollingBehavior = .paging
             
@@ -251,13 +211,13 @@ extension AboutSmilesTutorialViewController: UICollectionViewDataSource, UIColle
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutTextSlideCollectionViewCell", for: indexPath) as? AboutTextSlideCollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutScrollableCollectionViewCell", for: indexPath) as? AboutScrollableCollectionViewCell {
        
-            cell.configureCell(with: collectionsData[indexPath.row])
-            
-            if AppCommonMethods.languageIsArabic() {
-                cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-            }
+            cell.configData(model: collectionsData[indexPath.row])
+        
+//            if AppCommonMethods.languageIsArabic() {
+//                cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
+//            }
             return cell
         }
         
