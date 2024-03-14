@@ -141,7 +141,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
         dismiss()
     }
     @IBAction func didTabGoButton(index: Int) {
-        let item = self.collectionsData[index]
+        let item = self.collectionsData[currentPageIndex]
         if let urlString = item.buttonOneUrl {
             delegate?.handleDeepLinkRedirection(redirectionUrl: urlString)
         }
