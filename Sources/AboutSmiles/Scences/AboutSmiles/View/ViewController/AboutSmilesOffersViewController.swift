@@ -10,7 +10,7 @@ import Combine
 import SmilesLoader
 import SmilesUtilities
 
-final class AboutSmilesOffersViewController: UIViewController {
+public final class AboutSmilesOffersViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -28,7 +28,7 @@ final class AboutSmilesOffersViewController: UIViewController {
     private var sections:  [AboutSmilesSections] = []
     
     // MARK: - Life Cycle
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         bindViewModel()
@@ -93,11 +93,11 @@ final class AboutSmilesOffersViewController: UIViewController {
 
 // MARK: - UICollectionViewDataSource
 extension AboutSmilesOffersViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let type = sections[safe: section] else {
             return 0
         }
@@ -110,7 +110,7 @@ extension AboutSmilesOffersViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let type = sections[safe: indexPath.section] else {
             return .init()
         }
@@ -130,7 +130,7 @@ extension AboutSmilesOffersViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView,
+    public func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: Constants.aboutSmilesHeader.rawValue,
@@ -145,7 +145,7 @@ extension AboutSmilesOffersViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension AboutSmilesOffersViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedSection = sections[safe: indexPath.section],
               case .offers(offers: let offers) = selectedSection,
               let selectedOffer = offers[safe: indexPath.row]
