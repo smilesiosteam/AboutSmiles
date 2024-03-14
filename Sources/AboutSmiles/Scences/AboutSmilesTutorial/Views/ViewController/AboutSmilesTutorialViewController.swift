@@ -51,10 +51,12 @@ final class AboutSmilesTutorialViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        autoScroller.stopTimer()
+    }
     // MARK: - Functions
     private func configData(model: StoriesUIModel) {
-        
+       
         nextButton.setTitle(model.buttonSecondText, for: .normal)
         goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
         titleLabel.text = model.title
