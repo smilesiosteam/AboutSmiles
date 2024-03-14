@@ -26,7 +26,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
     private var currentPageIndex: Int = 0
     
     private var autoScroller: AboutTutorialCollectionViewAutoScroller!
-    weak var timer: Timer?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
         setupCollectionView()
         initialSetup()
     }
-    
+   
     init(collectionsData: [StoriesUIModel]?, delegate: AboutSmilesNavigationDelegate?) {
         
         self.collectionsData = collectionsData ?? [StoriesUIModel]()
@@ -59,7 +59,8 @@ final class AboutSmilesTutorialViewController: UIViewController {
         goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
         titleLabel.text = model.title
         subTitleLabel.text = model.description
-        backgroundColorView.backgroundColor = UIColor(hexColorWithAlpha: model.backgroundColor ?? "#DCDFEF")
+        backgroundColorView.backgroundColor = UIColor(hexString: model.backgroundColor ?? "#DCDFEF")
+        
         
         if let isActive = model.isActive, isActive {
             goToExplorerButton.isUserInteractionEnabled = true
