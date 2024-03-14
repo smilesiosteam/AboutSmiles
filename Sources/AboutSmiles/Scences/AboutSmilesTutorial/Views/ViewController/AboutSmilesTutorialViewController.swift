@@ -59,7 +59,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
         goToExplorerButton.setTitle(model.buttonOneText, for: .normal)
         titleLabel.text = model.title
         subTitleLabel.text = model.description
-        backgroundColorView.backgroundColor = UIColor(hexColorWithAlpha: model.backgroundColor ?? "#DCDFEF")
+        backgroundColorView.backgroundColor = UIColor(hexString: model.backgroundColor ?? "")
         
         if let isActive = model.isActive, isActive {
             goToExplorerButton.isUserInteractionEnabled = true
