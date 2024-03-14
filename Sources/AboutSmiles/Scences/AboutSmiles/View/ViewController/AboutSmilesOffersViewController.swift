@@ -30,6 +30,7 @@ public final class AboutSmilesOffersViewController: UIViewController {
     // MARK: - Life Cycle
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupCollectionView()
         bindViewModel()
         viewModel.loadData()
