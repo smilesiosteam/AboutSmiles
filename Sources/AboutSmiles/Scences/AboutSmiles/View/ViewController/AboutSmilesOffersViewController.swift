@@ -10,7 +10,7 @@ import Combine
 import SmilesLoader
 import SmilesUtilities
 
-final class AboutSmilesViewController: UIViewController {
+final class AboutSmilesOffersViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -38,7 +38,7 @@ final class AboutSmilesViewController: UIViewController {
     // MARK: - Init
     init(viewModel: AboutSmilesViewModel) {
         self.viewModel = viewModel
-        super.init(nibName: AboutSmilesViewController.className, bundle: Bundle.module)
+        super.init(nibName: AboutSmilesOffersViewController.className, bundle: Bundle.module)
     }
     
     required init?(coder: NSCoder) {
@@ -92,7 +92,7 @@ final class AboutSmilesViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDataSource
-extension AboutSmilesViewController: UICollectionViewDataSource {
+extension AboutSmilesOffersViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
     }
@@ -144,7 +144,7 @@ extension AboutSmilesViewController: UICollectionViewDataSource {
 }
 
 // MARK: - UICollectionViewDelegate
-extension AboutSmilesViewController: UICollectionViewDelegate {
+extension AboutSmilesOffersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedSection = sections[safe: indexPath.section],
               case .offers(offers: let offers) = selectedSection,

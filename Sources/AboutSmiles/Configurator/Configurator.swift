@@ -32,7 +32,7 @@ public struct AboutSmilesConfigurator {
         let offersUseCase = OffersUseCase(repository: repository)
         let faqsUseCase = FAQUseCase(repository: repository)
         let viewModel = AboutSmilesViewModel(faqsUseCase: faqsUseCase, storyUseCase: offersUseCase)
-        let view = AboutSmilesViewController(viewModel: viewModel)
+        let view = AboutSmilesOffersViewController(viewModel: viewModel)
         return view
     }
     
