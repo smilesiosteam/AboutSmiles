@@ -116,7 +116,7 @@ final class AboutSmilesTutorialViewController: UIViewController {
     }
     
     func setupCollectionViewLayout() ->  UICollectionViewCompositionalLayout {
-        let layout = UICollectionViewCompositionalLayout { (sectionNumber, env) -> NSCollectionLayoutSection? in
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionNumber, env) -> NSCollectionLayoutSection? in
             
             let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16)
@@ -169,35 +169,8 @@ extension AboutSmilesTutorialViewController {
     }
     
     private func setImage(at index: Int) {
-        print(index)
         currentPageIndex = index
         configData(model: collectionsData[index])
-    }
-    
-    private func scrollSlide() {
-        if let coll = collectionView {
-            for cell in coll.visibleCells {
-                let indexPath: IndexPath? = coll.indexPath(for: cell)
-                if let row = indexPath?.row, let section = indexPath?.section {
-                    print("\(row):\(self.collectionsData.count)")
-                    if (row  == self.collectionsData.count-1) {
-                       
-                    } else if (row  < (self.collectionsData.count - 1)) {
-                        let indexPath1: IndexPath?
-                        indexPath1 = IndexPath(row: row + 1, section: section)
-                        self.pageController.currentPage = row
-                        self.setImage(at: row)
-                        coll.scrollToItem(at: indexPath1!, at: .right, animated: true)
-                    } else {
-                        let indexPath1: IndexPath?
-                        indexPath1 = IndexPath(row: 1, section: section)
-                        self.pageController.currentPage = 0
-                        self.setImage(at: indexPath1!.row)
-                        coll.scrollToItem(at: indexPath1!, at: .right, animated: false)
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -217,10 +190,6 @@ extension AboutSmilesTutorialViewController: UICollectionViewDataSource, UIColle
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutScrollableCollectionViewCell", for: indexPath) as? AboutScrollableCollectionViewCell {
        
             cell.configData(model: collectionsData[indexPath.row])
-        
-//            if AppCommonMethods.languageIsArabic() {
-//                cell.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
-//            }
             return cell
         }
         
